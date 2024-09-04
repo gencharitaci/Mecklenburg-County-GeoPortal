@@ -42,7 +42,11 @@
     {
       name: 'School data on Open Mapping',
       url: 'https://maps.mecknc.gov/openmapping/data.html?search=school'
-    }
+    },
+    {
+      name: 'NC test scores: 23-24 grades for Charlotte-Mecklenburg Schools | Charlotte Observer',
+      url: 'https://www.charlotteobserver.com/news/local/education/article291899680.html'
+    },
   ]
 
   location.subscribe(value => {
