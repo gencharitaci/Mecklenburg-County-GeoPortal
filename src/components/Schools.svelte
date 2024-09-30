@@ -86,7 +86,7 @@
       // school numbers to fetch
       const schlnums = [...new Set(Object.values(jsons[0][0]).concat(Object.values(jsons[1][0])))]
 
-      fetch(`https://api.mcmap.org/v1/query/view_cms_schools_metrics?columns=city,glp_2022_23,grade_2022_23,growth_status_2022_23,num as schlnum,address,name,type,ST_Distance(geom,ST_Transform(GeomFromText('POINT( ${lng} ${lat} )',4326), 2264)) as distance,st_x(st_transform(geom, 4326)) as lng, st_y(st_transform(geom, 4326)) as lat&filter=num in(${schlnums.join()})`)
+      fetch(`https://api.mcmap.org/v1/query/view_cms_schools_metrics?columns=city,glp_2023_24,grade_2023_24,growth_status_2023_24,num as schlnum,address,name,type,ST_Distance(geom,ST_Transform(GeomFromText('POINT( ${lng} ${lat} )',4326), 2264)) as distance,st_x(st_transform(geom, 4326)) as lng, st_y(st_transform(geom, 4326)) as lat&filter=num in(${schlnums.join()})`)
         .then(schools => schools.json())
         .then(schools => {
 
@@ -118,9 +118,9 @@
                 result.grades.join(', '),
                 result.address,
                 `${formatCommas(result.distance / 5280, 1)} miles`,
-                result.grade_2022_23 || '',
-                result.growth_status_2022_23 || '',
-                result.glp_2022_23 ? result.glp_2022_23 + '%' : ''
+                result.grade_2023_24 || '',
+                result.growth_status_2023_24 || '',
+                result.glp_2023_24 ? result.glp_2023_24 + '%' : ''
               ])
             })
 
@@ -136,7 +136,7 @@
     const params = {
       filter: "magnet <> 'Non Magnet'",
       columns: `num,city,address,name,grade_level,coalesce(mag_focus, '') as mag_focus,st_x(st_transform(geom, 4326)) as lng,
-          st_y(st_transform(geom, 4326)) as lat,magnet,glp_2022_23,grade_2022_23,growth_status_2022_23,
+          st_y(st_transform(geom, 4326)) as lat,magnet,glp_2023_24,grade_2023_24,growth_status_2023_24,
           ST_Distance(geom,ST_Transform(
           GeomFromText('POINT( ${lng} ${lat} )',4326), 2264)) as distance`,
       sort: 'distance'
@@ -175,19 +175,19 @@
 <Table
   rows={schoolsCurrent.rows}
   columns={schoolsCurrent.columns}
-  caption="2024-2025 School Year"
+  caption="2023-2024 School Year"
   alignRight={[4]}
   alignCenter={[5,6,7]}
-  footer="*2022-23 school year, North Carolina Department of Public Instruction"
+  footer="*2023-24 school year, North Carolina Department of Public Instruction"
 />
 
 <Table
   rows={schoolsFuture.rows}
   columns={schoolsFuture.columns}
-  caption="2025-2026 School Year"
+  caption="2024-2025 School Year"
   alignRight={[4]}
   alignCenter={[5,6,7]}
-  footer="*2022-23 school year, North Carolina Department of Public Instruction"
+  footer="*2023-24 school year, North Carolina Department of Public Instruction"
 />
 
 <Table
