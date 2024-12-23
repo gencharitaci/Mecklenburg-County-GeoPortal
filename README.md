@@ -4,6 +4,8 @@ Mecklenburg County's main GIS portal for the public, built with [Svelte](https:/
 
 Site: [https://mcmap.org/geoportal](https://mcmap.org/geoportal)
 
+Added: Diclaimer - 12/23/24
+
 ## Architecture
 
 ![Architecture](./Architecture.png)

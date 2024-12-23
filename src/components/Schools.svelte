@@ -85,11 +85,15 @@
 
       // school numbers to fetch
       const schlnums = [...new Set(Object.values(jsons[0][0]).concat(Object.values(jsons[1][0])))]
+      console.log("schlnums", schlnums);
+      
 
       fetch(`https://api.mcmap.org/v1/query/view_cms_schools_metrics?columns=city,glp_2023_24,grade_2023_24,growth_status_2023_24,num as schlnum,address,name,type,ST_Distance(geom,ST_Transform(GeomFromText('POINT( ${lng} ${lat} )',4326), 2264)) as distance,st_x(st_transform(geom, 4326)) as lng, st_y(st_transform(geom, 4326)) as lat&filter=num in(${schlnums.join()})`)
         .then(schools => schools.json())
         .then(schools => {
 
+          console.log("schools", schools);
+          
           schools.forEach(school => {
             mapPoints.push({
               label: school.type.charAt(0),
@@ -110,10 +114,11 @@
                 if (elem[0][key] === scl) grades.push(key.replace("grade", '').toUpperCase())
               })
 
-              let result = JSON.parse(JSON.stringify(schools.filter(el => el.schlnum === scl)[0]))
-              result.grades = grades
-
-              results.push([
+              let filteredSchools = schools.filter(el => el.schlnum === scl);
+              if (filteredSchools.length > 0) {
+                let result = JSON.parse(JSON.stringify(filteredSchools[0]));
+                result.grades = grades;
+                results.push([
                 result.name,
                 result.grades.join(', '),
                 result.address,
@@ -122,6 +127,22 @@
                 result.growth_status_2023_24 || '',
                 result.glp_2023_24 ? result.glp_2023_24 + '%' : ''
               ])
+              } else {
+                console.warn(`No data found for school number ${scl}`);
+              }
+
+              // let result = JSON.parse(JSON.stringify(schools.filter(el => el.schlnum === scl)[0]))
+              // result.grades = grades
+
+              // results.push([
+              //   result.name,
+              //   result.grades.join(', '),
+              //   result.address,
+              //   `${formatCommas(result.distance / 5280, 1)} miles`,
+              //   result.grade_2023_24 || '',
+              //   result.growth_status_2023_24 || '',
+              //   result.glp_2023_24 ? result.glp_2023_24 + '%' : ''
+              // ])
             })
 
             idx === 0 ? schoolsCurrent.rows = results : schoolsFuture.rows = results
@@ -175,7 +196,7 @@
 <Table
   rows={schoolsCurrent.rows}
   columns={schoolsCurrent.columns}
-  caption="2023-2024 School Year"
+  caption="2024-2025 School Year"
   alignRight={[4]}
   alignCenter={[5,6,7]}
   footer="*2023-24 school year, North Carolina Department of Public Instruction"
@@ -184,7 +205,7 @@
 <Table
   rows={schoolsFuture.rows}
   columns={schoolsFuture.columns}
-  caption="2024-2025 School Year"
+  caption="2025-2026 School Year"
   alignRight={[4]}
   alignCenter={[5,6,7]}
   footer="*2023-24 school year, North Carolina Department of Public Instruction"
