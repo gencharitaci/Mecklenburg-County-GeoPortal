@@ -12,7 +12,6 @@
   import Voting from './components/Voting.svelte'
   import Jump from './components/Jump.svelte'
   import PrintBanner from './components/PrintBanner.svelte'
-  import Disclaimer from './components/Disclaimer.svelte';
 
   const comps = {
     parks: Parks,

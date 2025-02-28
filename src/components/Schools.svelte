@@ -65,6 +65,10 @@
     fetchSchools($location.lnglat[0], $location.lnglat[1])
   }
 
+  /**
+   * @param {any} lng
+   * @param {any} lat
+   */
   function fetchSchools(lng, lat) {
     const urls = [
       `https://api.mcmap.org/v1/nearest/cms_parcels/${lng},${lat},4326?columns=high_zone,gradek,grade1,grade2,grade3,grade4,grade5,grade6,grade7,grade8,grade9,grade10,grade11,grade12&limit=1`,
@@ -94,7 +98,7 @@
 
           console.log("schools", schools);
           
-          schools.forEach(school => {
+          schools.forEach((/** @type {{ type: string; lng: any; lat: any; name: any; address: any; city: any; }} */ school) => {
             mapPoints.push({
               label: school.type.charAt(0),
               lngLat: [school.lng, school.lat],
@@ -153,6 +157,10 @@
     })
   }
 
+  /**
+   * @param {any} lng
+   * @param {any} lat
+   */
   function fetchMagnet(lng, lat) {
     const params = {
       filter: "magnet <> 'Non Magnet'",
