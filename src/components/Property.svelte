@@ -60,19 +60,19 @@
     },
     {
       name: "County Assessor's Office",
-      url: 'https://www.mecknc.gov/assessorsoffice/Pages/Home.aspx'
+      url: 'https://cao.mecknc.gov/'
     },
     {
       name: 'Office of the Tax Collector',
       url: 'https://www.mecknc.gov/taxcollections/Pages/Home.aspx'
     },
     {
-      name: 'Charlotte Planning',
-      url: 'https://charlottenc.gov/planning/Pages/Home.aspx'
+      name: 'Charlotte Planning, Design and Development',
+      url: 'https://www.charlottenc.gov/Growth-and-Development/Planning-and-Development'
     },
     {
       name: 'Tax data on Open Mapping',
-      url: 'http://maps.co.mecklenburg.nc.us/openmapping/data.html?search=tax'
+      url: 'https://maps.mecklenburgcountync.gov/openmapping/data.html#tax'
     }
   ]
 
@@ -88,7 +88,7 @@
     })
 
     // zoning
-    fetch(`https://api.mcmap.org/v1/intersect_point/view_zoning/${$location.lnglat.join(',')},4326?${jsonToURL({
+    fetch(`https://maps.mecklenburgcountync.gov/dirt/api/v1/intersect_point/view_zoning/${$location.lnglat.join(',')},4326?${jsonToURL({
       columns: 'zone_des,zone_class',
       geom_column: "the_geom"
     })}`)
@@ -102,7 +102,7 @@
       })
 
     // ownership
-    fetch(`https://api.mcmap.org/v1/query/cama_tb_pubowner?${jsonToURL({
+    fetch(`https://maps.mecklenburgcountync.gov/dirt/api/v1/query/cama_tb_pubowner?${jsonToURL({
       columns: 'nme_ownerlastname,nme_ownerfirstname,txt_mailaddr1,txt_mailaddr2,txt_city,txt_state,txt_zipcode',
       filter: `id_pid = '${$location.pid}'`
     })}`)
@@ -123,7 +123,7 @@
       })
 
     // appraisal
-    fetch(`https://api.mcmap.org/v1/query/cama_tb_pubparcelinfo?${jsonToURL({
+    fetch(`https://maps.mecklenburgcountync.gov/dirt/api/v1/query/cama_tb_pubparcelinfo?${jsonToURL({
       columns: 'txt_taxyear,amt_netbldgvalue,amt_extrafeaturevalue,amt_landvalue,amt_totalvalue',
       filter: `id_pid = '${$location.pid}'`
     })}`)
@@ -147,7 +147,7 @@
       })
 
     // sale history
-    fetch(`https://api.mcmap.org/v1/query/cama_tb_pubsales?${jsonToURL({
+    fetch(`https://maps.mecklenburgcountync.gov/dirt/api/v1/query/cama_tb_pubsales?${jsonToURL({
       columns: 'dte_dateofsale,amt_price,txt_deedbook,txt_deedpage',
       filter: `id_pid = '${$location.pid}'`,
       sort: 'dte_dateofsale DESC'
@@ -170,7 +170,7 @@
       })
 
     // land use
-    fetch(`https://api.mcmap.org/v1/query/cama_tb_publand,cama_ctb_publanduse?${jsonToURL({
+    fetch(`https://maps.mecklenburgcountync.gov/dirt/api/v1/query/cama_tb_publand,cama_ctb_publanduse?${jsonToURL({
       columns: 'txt_landUse_fulldesc,cnt_landunits,txt_neigh_desc',
       filter: `cama_tb_publand.cde_landusecode = cama_ctb_publanduse.cde_landuse and id_pid = '${$location.pid}'`
     })}`)
@@ -192,7 +192,7 @@
       })
 
     // buildings
-    fetch(`https://api.mcmap.org/v1/query/cama_tb_pubbuilding?${jsonToURL({
+    fetch(`https://maps.mecklenburgcountync.gov/dirt/api/v1/query/cama_tb_pubbuilding?${jsonToURL({
       columns: 'txt_propertyuse_desc,num_yearbuilt,txt_extwall_desc,num_grossarea,num_bedrooms,cnt_fullbaths,cnt_threeqtrbaths,cnt_halfbaths',
       filter: `id_pid = '${$location.pid}'`
     })}`)
@@ -217,7 +217,7 @@
       })
 
     // building permits
-    fetch(`https://api.mcmap.org/v1/query/building_permits?${jsonToURL({
+    fetch(`https://maps.mecklenburgcountync.gov/dirt/api/v1/query/building_permits?${jsonToURL({
       columns: 'date_completed_co_process,project_name,square_footage,construction_cost',
       filter: `mat_parcel_id = '${$location.pid}'`,
       sort: 'date_completed_co_process DESC'

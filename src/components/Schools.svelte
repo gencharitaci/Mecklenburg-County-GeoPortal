@@ -41,7 +41,7 @@
     },
     {
       name: 'School data on Open Mapping',
-      url: 'https://maps.mecknc.gov/openmapping/data.html?search=school'
+      url: 'https://maps.mecklenburgcountync.gov/openmapping/data.html?search=school'
     },
     {
       name: 'NC test scores: 23-24 grades for Charlotte-Mecklenburg Schools | Charlotte Observer',
@@ -71,8 +71,8 @@
    */
   function fetchSchools(lng, lat) {
     const urls = [
-      `https://api.mcmap.org/v1/nearest/cms_parcels/${lng},${lat},4326?columns=high_zone,gradek,grade1,grade2,grade3,grade4,grade5,grade6,grade7,grade8,grade9,grade10,grade11,grade12&limit=1`,
-      `https://api.mcmap.org/v1/nearest/cms_parcels_future_py/${lng},${lat},4326?columns=high_zone,gradek,grade1,grade2,grade3,grade4,grade5,grade6,grade7,grade8,grade9,grade10,grade11,grade12&limit=1`
+      `https://maps.mecklenburgcountync.gov/dirt/api/v1/nearest/cms_parcels/${lng},${lat},4326?geom_column=geom&columns=high_zone,gradek,grade1,grade2,grade3,grade4,grade5,grade6,grade7,grade8,grade9,grade10,grade11,grade12&limit=1`,
+      `https://maps.mecklenburgcountync.gov/dirt/api/v1/nearest/cms_parcels_future_py/${lng},${lat},4326?geom_column=geom&columns=high_zone,gradek,grade1,grade2,grade3,grade4,grade5,grade6,grade7,grade8,grade9,grade10,grade11,grade12&limit=1`
     ]
 
     Promise.all(urls.map(url =>
@@ -89,14 +89,14 @@
 
       // school numbers to fetch
       const schlnums = [...new Set(Object.values(jsons[0][0]).concat(Object.values(jsons[1][0])))]
-      console.log("schlnums", schlnums);
+      // console.log("schlnums", schlnums);
       
 
-      fetch(`https://api.mcmap.org/v1/query/view_cms_schools_metrics?columns=city,glp_2023_24,grade_2023_24,growth_status_2023_24,num as schlnum,address,name,type,ST_Distance(geom,ST_Transform(GeomFromText('POINT( ${lng} ${lat} )',4326), 2264)) as distance,st_x(st_transform(geom, 4326)) as lng, st_y(st_transform(geom, 4326)) as lat&filter=num in(${schlnums.join()})`)
+      fetch(`https://maps.mecklenburgcountync.gov/dirt/api/v1/query/view_cms_schools_metrics?columns=city,glp_2023_24,grade_2023_24,growth_status_2023_24,num as schlnum,address,name,type,ST_Distance(geom,ST_Transform(GeomFromText('POINT( ${lng} ${lat} )',4326), 2264)) as distance,st_x(st_transform(geom, 4326)) as lng, st_y(st_transform(geom, 4326)) as lat&filter=num in(${schlnums.join()})`)
         .then(schools => schools.json())
         .then(schools => {
 
-          console.log("schools", schools);
+          // console.log("schools", schools);
           
           schools.forEach((/** @type {{ type: string; lng: any; lat: any; name: any; address: any; city: any; }} */ school) => {
             mapPoints.push({
@@ -171,7 +171,7 @@
       sort: 'distance'
     }
 
-    fetch(`https://api.mcmap.org/v1/query/view_cms_schools_metrics?${jsonToURL(params)}`)
+    fetch(`https://maps.mecklenburgcountync.gov/dirt/api/v1/query/view_cms_schools_metrics?${jsonToURL(params)}`)
       .then(response => response.json())
       .then(data => {
         // make records for table

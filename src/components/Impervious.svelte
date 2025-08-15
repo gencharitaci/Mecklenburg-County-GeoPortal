@@ -28,7 +28,7 @@
     },
     {
       name: 'Impervious Surface data on Open Mapping',
-      url: 'http://maps.co.mecklenburg.nc.us/openmapping/data.html?search=impervious'
+      url: 'https://maps.mecklenburgcountync.gov/openmapping/data.html#impervious'
     }
   ]
 
@@ -51,7 +51,7 @@
       group: "subtheme, category"
     }
 
-    fetch(`https://api.mcmap.org/v1/query/impervious_surface_area?${jsonToURL(params)}`)
+    fetch(`https://maps.mecklenburgcountync.gov/dirt/api/v1/query/impervious_surface_area?${jsonToURL(params)}`)
       .then(response => response.json())
       .then(data => {
         // make records for table

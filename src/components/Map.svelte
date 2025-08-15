@@ -68,6 +68,7 @@
       maxBounds: [[-82.641, 34.115], [-79.008, 36.762]],
       preserveDrawingBuffer: navigator.userAgent.toLowerCase().indexOf("firefox") > -1
     }
+    
 
     // set beginning map extent
     if (mapPoints) {
@@ -138,12 +139,15 @@
     map.addControl(new gl.FullscreenControl())
   }
 
-  function toggle() {
+  /**
+   * @param {string} toggleLayers
+   */
+  function toggle(toggleLayers) {
         if (toggleLayers === 'impervious') {
           map.addSource('impervious', {
             "type": "vector",
             "tiles": [
-              "https://maps.mecknc.gov/tiles/impervious_surface/{z}/{x}/{y}"
+              "https://maps.mecklenburgcountync.gov/tiles/impervious_surface/{z}/{x}/{y}"
             ],
             "minzoom": 16,
             "maxzoom": 16
@@ -169,7 +173,7 @@
           map.addSource('floodplains', {
             "type": "vector",
             "tiles": [
-              "https://maps.mecknc.gov/tiles/view_regulated_floodplains/{z}/{x}/{y}"
+              "https://maps.mecklenburgcountync.gov/tiles/view_regulated_floodplains/{z}/{x}/{y}"
             ],
             "minzoom": 14,
             "maxzoom": 14
@@ -177,7 +181,7 @@
           map.addSource('stormwater_conservation_easements', {
             "type": "vector",
             "tiles": [
-              "https://maps.mecknc.gov/tiles/stormwater_conservation_easements/{z}/{x}/{y}"
+              "https://maps.mecklenburgcountync.gov/tiles/stormwater_conservation_easements/{z}/{x}/{y}"
             ],
             "minzoom": 14,
             "maxzoom": 14
@@ -185,7 +189,7 @@
           map.addSource('water_quality_buffers', {
             "type": "vector",
             "tiles": [
-              "https://maps.mecknc.gov/tiles/water_quality_buffers/{z}/{x}/{y}"
+              "https://maps.mecklenburgcountync.gov/tiles/water_quality_buffers/{z}/{x}/{y}"
             ],
             "minzoom": 14,
             "maxzoom": 14

@@ -7,14 +7,14 @@
   "sources": {
     "openmaptiles": {
       "type": "vector",
-      "tiles": ["https://tiles.mcmap.org/osmvt/{z}/{x}/{y}"],
+      "tiles": ["https://maps.mecklenburgcountync.gov/tiles/osmvt/{z}/{x}/{y}"],
       "maxzoom": 14,
       "minzoom": 0
     },
     "parcels": {
       "type": "vector",
       "tiles": [
-        "https://api.mcmap.org/v1/mvt/tax_parcels/{z}/{x}/{y}?geom_column=the_geom"
+        "https://maps.mecklenburgcountync.gov/dirt/api/v1/mvt/tax_parcels/{z}/{x}/{y}?geom_column=the_geom"
       ],
       "minzoom": 16,
       "maxzoom": 16
@@ -22,7 +22,7 @@
     "impervious": {
       "type": "vector",
       "tiles": [
-        "https://api.mcmap.org/v1/mvt/impervious_surface/{z}/{x}/{y}?columns=type"
+        "https://maps.mecklenburgcountync.gov/dirt/api/v1/mvt/impervious_surface/{z}/{x}/{y}?columns=type"
       ],
       "minzoom": 16,
       "maxzoom": 16
@@ -30,7 +30,7 @@
     "floodplains": {
       "type": "vector",
       "tiles": [
-        "https://api.mcmap.org/v1/mvt/view_regulated_floodplains/{z}/{x}/{y}?geom_column=the_geom"
+        "https://maps.mecklenburgcountync.gov/dirt/api/v1/mvt/view_regulated_floodplains/{z}/{x}/{y}?geom_column=the_geom"
       ],
       "minzoom": 14,
       "maxzoom": 14
@@ -38,7 +38,7 @@
     "conservation_easements": {
       "type": "vector",
       "tiles": [
-        "https://api.mcmap.org/v1/mvt/stormwater_conservation_easements/{z}/{x}/{y}"
+        "https://maps.mecklenburgcountync.gov/dirt/api/v1/mvt/stormwater_conservation_easements/{z}/{x}/{y}"
       ],
       "minzoom": 14,
       "maxzoom": 14
@@ -46,7 +46,7 @@
     "greenways": {
       "type": "vector",
       "tiles": [
-        "https://api.mcmap.org/v1/mvt/greenways_union/{z}/{x}/{y}?columns=trail_id"
+        "https://maps.mecklenburgcountync.gov/dirt/api/v1/mvt/greenways_union/{z}/{x}/{y}?columns=trail_id"
       ],
       "minzoom": 10,
       "maxzoom": 14
@@ -70,8 +70,8 @@
       "maxzoom": 13
     }
   },
-  "sprite": "https://mcmap.org/gl-styles/sprites/osm-liberty",
-  "glyphs": "https://mcmap.org/gl-styles/fonts/{fontstack}/{range}.pbf",
+  "sprite": "https://maps.mecklenburgcountync.gov/gl-styles/sprites/osm-liberty",
+  "glyphs": "https://maps.mecklenburgcountync.gov/gl-styles/fonts/{fontstack}/{range}.pbf",
   "terrain": {
 		"source":  "terrain_source",
 		"exaggeration":  1

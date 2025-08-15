@@ -1,21 +1,34 @@
-/**
- * Modified from https://github.com/fnando/sparkline
- */
 
+/**
+ * @param {number} max
+ * @param {number} height
+ * @param {number} diff
+ * @param {number} value
+ */
 function getY(max, height, diff, value) {
   let val = parseFloat((height - (value * height / max) + diff).toFixed(2))
   if (isNaN(val)) val = diff
   return val;
 }
 
+/**
+ * @param {{ querySelectorAll: (arg0: string) => any; removeChild: (arg0: any) => void; }} svg
+ */
 function removeChildren(svg) {
   [...svg.querySelectorAll("*")].forEach(element => svg.removeChild(element));
 }
 
+/**
+ * @param {{ value: any; }} entry
+ */
 function defaultFetch(entry) {
   return entry.value;
 }
 
+/**
+ * @param {string} tag
+ * @param {{ [x: string]: any; class?: string; d?: string; fill?: string; stroke?: string; cx?: any; cy?: any; r?: any; x1?: number; x2?: number; y1?: number; y2?: number; "stroke-width"?: any; width?: any; height?: any; style?: string; }} attrs
+ */
 function buildElement(tag, attrs) {
   const element = document.createElementNS("http://www.w3.org/2000/svg", tag);
 
@@ -26,7 +39,17 @@ function buildElement(tag, attrs) {
   return element;
 }
 
+/**
+ * @param {{ querySelectorAll: any; removeChild: any; attributes?: any; appendChild?: any; }} svg
+ * @param {any[]} entries
+ * @param {{ onmousemove?: any; onmouseout?: any; interactive?: any; spotRadius?: any; cursorWidth?: any; fetch?: any; }} options
+ */
 export function sparkline(svg, entries, options) {
+  if (!svg || !svg.querySelectorAll || !svg.removeChild) {
+    // console.error('Invalid SVG object passed to sparkline function');
+    return;
+  }
+  
   // if (!svg) return
   removeChildren(svg);
 
@@ -181,10 +204,10 @@ export function sparkline(svg, entries, options) {
   svg.appendChild(interactionLayer);
 
   interactionLayer.addEventListener("mouseout", event => {
-    cursor.setAttribute("x1", offscreen);
-    cursor.setAttribute("x2", offscreen);
+    cursor.setAttribute("x1", `${offscreen}`);
+    cursor.setAttribute("x2", `${offscreen}`);
 
-    spot.setAttribute("cx", offscreen);
+    spot.setAttribute("cx", `${offscreen}`);
 
     if (onmouseout) {
       onmouseout(event);

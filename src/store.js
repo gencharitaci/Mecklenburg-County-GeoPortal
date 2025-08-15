@@ -70,9 +70,14 @@ if (args.length === 2) {
   if (args[1].length > 0) {
     const argsTabs = args[1].split(',')
     const tabVals = initTabs.map(el => el.id)
-    if (argsTabs.every(r => tabVals.indexOf(r)) !== -1)
-      defaultTabs = argsTabs
+    // if (argsTabs.every(r => tabVals.indexOf(r)) !== -1)
+    //   defaultTabs = argsTabs
+    const tabIds = new Set(tabVals); // Set for O(1) lookups
+    if (argsTabs.every(r => tabIds.has(r))) {
+      defaultTabs = argsTabs;
+    }
   }
+  
 }
 
 export let activeTabs = writable(defaultTabs)

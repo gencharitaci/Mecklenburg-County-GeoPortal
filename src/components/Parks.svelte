@@ -18,7 +18,7 @@
   const resourceLinks = [
     {
       name: 'Mecklenburg County Park and Recreation',
-      url: 'https://www.mecknc.gov/ParkandRec/Pages/Home.aspx'
+      url: 'https://parkandrec.mecknc.gov'
     },
     {
       name: 'Huntersville Parks and Recreation',
@@ -26,7 +26,7 @@
     },
     {
       name: 'Park data on Open Mapping',
-      url: 'http://maps.co.mecklenburg.nc.us/openmapping/data.html?search=park'
+      url: 'https://maps.mecklenburgcountync.gov/openmapping/data.html#park'
     }
   ]
 
@@ -45,7 +45,7 @@
       limit: "10"
     }
 
-    fetch(`https://api.mcmap.org/v1/nearest/parks_all/${$location.lnglat.join(",")},4326?${jsonToURL(params)}`)
+    fetch(`https://maps.mecklenburgcountync.gov/dirt/api/v1/nearest/parks_all/${$location.lnglat.join(",")},4326?${jsonToURL(params)}`)
       .then(response => response.json())
       .then(data => {
         // make records for table
@@ -81,7 +81,7 @@
       limit: "3"
     }
 
-    fetch(`https://api.mcmap.org/v1/nearest/greenways_union/${$location.lnglat.join(",")},4326?${jsonToURL(params)}`)
+    fetch(`https://maps.mecklenburgcountync.gov/dirt/api/v1/nearest/greenways_union/${$location.lnglat.join(",")},4326?${jsonToURL(params)}`)
       .then(response => response.json())
       .then(data => {
         // make records for table

@@ -16,7 +16,10 @@ if ('serviceWorker' in navigator) {
               console.log('New content is available, please refresh.')
               newWorker.postMessage({ type: 'SKIP_WAITING' })
               const dialog = document.querySelector("#sw-dialog")
-              if (dialog) dialog.showModal()
+              
+              if (dialog && dialog instanceof HTMLDialogElement) {
+                dialog.showModal();
+              }
             }
             break;
         }

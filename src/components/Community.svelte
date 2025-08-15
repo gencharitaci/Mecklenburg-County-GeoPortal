@@ -19,11 +19,11 @@
   const resourceLinks = [
     {
       name: 'Quality of Life Explorer',
-      url: 'https://mcmap.org/qol/'
+      url: 'https://maps.mecklenburgcountync.gov/qol/'
     },
     {
       name: 'Download Quality of Life data on Open Mapping',
-      url: 'http://maps.co.mecklenburg.nc.us/openmapping/data.html?search=quality%20of'
+      url: 'https://maps.mecklenburgcountync.gov/openmapping/data.html#quality%20of'
     }
   ]
 
@@ -40,7 +40,7 @@
   })
 
   function fetchData() {
-    fetch(`https://api.mcmap.org/v1/nearest/neighborhoods/${$location.lnglat.join(',')},4326?${jsonToURL({
+    fetch(`https://maps.mecklenburgcountync.gov/dirt/api/v1/nearest/neighborhoods/${$location.lnglat.join(',')},4326?${jsonToURL({
       columns: 'id',
       geom_column: 'the_geom',
       limit: 1
@@ -61,7 +61,7 @@
   }
 
   async function fetchQolData(m) {
-    const res = await fetch(`https://mcmap.org/qol/data/metric/${m}.json`);
+    const res = await fetch(`https://maps.mecklenburgcountync.gov/qol/data/metric/${m}.json`);
 		const json = await res.json();
 
 		if (res.ok) {
@@ -181,7 +181,7 @@
             </svg>
           </td>
           <td data-label="METRIC">
-            <a href="https://mcmap.org/qol/data/meta/{metric}.html" rel="noreferrer" target="_blank">{metricConfig.filter(el => el.metric === metric)[0].title}</a>,
+            <a href="https://maps.mecklenburgcountync.gov/qol/data/meta/{metric}.html" rel="noreferrer" target="_blank">{metricConfig.filter(el => el.metric === metric)[0].title}</a>,
             {data.years[data.years.length - 1]}
             {#if metricConfig.filter(el => el.metric === metric)[0].label}
             <span class="block text-sm">{@html metricConfig.filter(el => el.metric === metric)[0].label}</span>

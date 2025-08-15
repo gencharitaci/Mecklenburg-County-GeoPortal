@@ -2,7 +2,7 @@
 
 Mecklenburg County's main GIS portal for the public, built with [Svelte](https://svelte.dev/), [TailwindCSS](https://tailwindcss.com/), and [Maplibre GL JS](https://maplibre.org/maplibre-gl-js/docs/). The development and build environment is [Vite](https://vitejs.dev/). GeoPortal is designed for speed (perfect Lighthouse scores), ease of use, and works well on mobile devices.
 
-Site: [https://mcmap.org/geoportal](https://mcmap.org/geoportal)
+Site: [maps.mecklenburgcountync.gov/geoportal](maps.mecklenburgcountync.gov/geoportal)
 
 Added: Diclaimer - 12/23/24
 

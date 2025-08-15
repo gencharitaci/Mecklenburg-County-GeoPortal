@@ -1,27 +1,42 @@
+/**
+ * @param {number} num
+ */
 function formatCommas(num, decimals = 0) {
   if (num === null || isNaN(num)) return "N/A";
-  return parseFloat(num).toLocaleString("en-US", {
+  return parseFloat(`${num}`).toLocaleString("en-US", {
     maximumFractionDigits: decimals,
   });
 }
 
+/**
+ * @param {number} num
+ */
 function formatMoney(num) {
   if (num === null || isNaN(num)) return "N/A";
-  return parseFloat(num).toLocaleString("en-US", {
+  return parseFloat(`${num}`).toLocaleString("en-US", {
     style: "currency",
     currency: "USD",
   });
 }
 
+/**
+ * @param {string | number | Date} dateString
+ */
 function formatDate(dateString) {
   let date = new Date(dateString);
   return date.toLocaleDateString("en-US");
 }
 
+/**
+ * @param {number} n
+ */
 function isNumeric(n) {
-  return !isNaN(parseFloat(n)) && isFinite(n)
+  return !isNaN(parseFloat(`${n}`)) && isFinite(n)
 }
 
+/**
+ * @param {number} n
+ */
 function formatNumber(n, format = null, decimals = 0) {
   if (!isNumeric(n)) return "N/A";
 

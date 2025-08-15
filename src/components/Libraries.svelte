@@ -23,7 +23,7 @@
     },
     {
       name: 'Library data on Open Mapping',
-      url: 'http://maps.co.mecklenburg.nc.us/openmapping/data.html?search=libraries'
+      url: 'https://maps.mecklenburgcountync.gov/openmapping/data.html#libraries'
     }
   ]
 
@@ -42,7 +42,7 @@
       limit: "5"
     }
 
-    fetch(`https://api.mcmap.org/v1/nearest/libraries/${$location.lnglat.join(",")},4326?${jsonToURL(params)}`)
+    fetch(`https://maps.mecklenburgcountync.gov/dirt/api/v1/nearest/libraries/${$location.lnglat.join(",")},4326?${jsonToURL(params)}`)
       .then(response => response.json())
       .then(data => {
         // make records for table

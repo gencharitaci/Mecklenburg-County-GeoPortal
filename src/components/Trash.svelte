@@ -46,6 +46,10 @@
 		fetchData($location.lnglat[0], $location.lnglat[1])
 	})
 
+  /**
+   * @param {any} lng
+   * @param {any} lat
+   */
   function fetchData(lng, lat) {
     // reset variables
     rows = []
@@ -55,11 +59,11 @@
       columns: "jurisdiction, day, week, type"
     }
 
-    fetch(`https://api.mcmap.org/v1/intersect_point/solid_waste/${lng},${lat},4326?${jsonToURL(params)}`)
+    fetch(`https://maps.mecklenburgcountync.gov/dirt/api/v1/intersect_point/solid_waste/${lng},${lat},4326?${jsonToURL(params)}`)
       .then(response => response.json())
       .then(data => {
         // make records for table
-        data.forEach(el => {
+        data.forEach((/** @type {{ type: any; day: any; }} */ el) => {
           rows.push([
             el.type,
             el.day
@@ -75,6 +79,9 @@
       })
   }
 
+  /**
+   * @param {any[]} w
+   */
   function recyclingWeek(w) {
     if (!w) return ''
     var theDate = new Date();
@@ -91,6 +98,9 @@
     }
   }
 
+  /**
+   * @param {string | any[]} w
+   */
   function weekEvenOdd(w) {
     if (w === "A" || w === "GREEN") {
       return "even";
@@ -99,6 +109,9 @@
     }
   }
 
+  /**
+   * @param {number} d
+   */
   function weekNumber(d) {
     // the length of a week
     var one_week = 1000 * 60 * 60 * 24 * 7;
@@ -108,6 +121,9 @@
     return weekN;
   }
 
+  /**
+   * @param {number} num
+   */
   function checkOddEven(num) {
     if (num % 2 === 0) {
       return "even";
@@ -116,12 +132,19 @@
     }
   }
 
+  /**
+   * @param {any[]} data
+   * @param {string | any[]} filter
+   */
   function getDay(data, filter) {
     if (!data) return ''
     const day = data.filter(el => filter.indexOf(el.type.toUpperCase()) !== -1)
     return day[0].day.toUpperCase()
   }
 
+  /**
+   * @param {any[]} data
+   */
   function getColor(data) {
     if (data) {
       const color = data.filter(el => ['RECYCLING', 'GARBAGE AND RECYCLING'].indexOf(el.type.toUpperCase()) !== -1)

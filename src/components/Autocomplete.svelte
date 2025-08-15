@@ -21,12 +21,17 @@ let fromStart= false; // Default type ahead
 let list;
 let input;
 
+  /**
+   * @param {HTMLInputElement} node
+   */
 function focusOnMount(node) {
   node.focus()
 }
 
 // debounce
-const debounce = (fn, time) => {
+const debounce = (
+  /** @type {{ (e: any): void; apply?: any; }} */ fn, 
+  /** @type {number} */ time) => {
   let timeout
   return function () {
     const functionCall = () => fn.apply(this, arguments)
@@ -35,7 +40,7 @@ const debounce = (fn, time) => {
   }
 }
 
-const regExpEscape = (s) => {
+const regExpEscape = (/** @type {string} */ s) => {
   return s.replace(/[-\\^$*+?.()|[\]{}]/g, "\\$&")
 }
 
@@ -43,6 +48,9 @@ $: if (items.length > 0) {
   filterResults()
 }
 
+  /**
+   * @param {any} event
+   */
 async function onChange (event) {
   if (search.trim().length >= Number(minChar)) {
     isOpen = true;
@@ -65,6 +73,9 @@ function filterResults () {
   });
 }
 
+  /**
+   * @param {{ key: string; preventDefault: () => void; }} event
+   */
 function onKeyDown (event) {
   if (event.key === 'ArrowDown' && arrowCounter < results.length) {
     arrowCounter =  arrowCounter + 1

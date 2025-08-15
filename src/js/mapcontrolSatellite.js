@@ -3,6 +3,9 @@ export default class AerialToggle {
     this._placeUnder = placeUnder;
   }
 
+  /**
+   * @param {{ getLayer: (arg0: string) => any; removeLayer: (arg0: string) => void; removeSource: (arg0: string) => void; addSource: (arg0: string, arg1: { type: string; tiles: string[]; tileSize: number; maxzoom: number; }) => void; addLayer: (arg0: { id: string; type: string; source: string; maxzoom: number; }, arg1: string) => void; }} map
+   */
   onAdd(map) {
     this._map = map;
     let _this = this;
