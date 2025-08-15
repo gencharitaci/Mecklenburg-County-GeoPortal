@@ -4,10 +4,16 @@
   export let data
   //export let label
 
+  let isVisible = data.length > 0
+
   let svgElement
 
 
   const options = {
+    /**
+     * @param {{ target: any; offsetY: number; offsetX: number; }} event
+     * @param {{ label: any; }} datapoint
+     */
     onmousemove(event, datapoint) {
       var svg = findClosest(event.target, "svg");
       var tooltip = svg.nextElementSibling;
@@ -18,13 +24,17 @@
       tooltip.style.left = `${event.offsetX + 20}px`;
     },
 
-    onmouseout() {
+    /**
+     * @param {{ target: any; }} event
+     */
+    onmouseout(event) {
       var svg = findClosest(event.target, "svg");
       var tooltip = svg.nextElementSibling;
 
       tooltip.hidden = true;
     }
   }
+  
 
   function findClosest(target, tagName) {
     if (target.tagName === tagName) {
@@ -43,6 +53,10 @@
    $: makeSparkline(data, svgElement)
 
 
+   /**
+   * @param {any[]} x
+   * @param {{ querySelectorAll: any; removeChild: any; attributes?: any; appendChild?: any; }} elem
+   */
    function makeSparkline(x, elem) {
     if (elem) {
       sparkline(elem, x, options)
@@ -58,9 +72,9 @@
 }
 </style>
 
-{#if data.length > 1}
+{#if isVisible}
 <div class="relative inline-block">
   <svg bind:this={svgElement} class="inline" width="100" height="20" stroke-width="2" stroke="#2C5282" fill="#90CDF4"></svg>
-  <span class="tooltip" hidden="true"></span>
+  <span class="tooltip" hidden></span>
 </div>
 {/if}

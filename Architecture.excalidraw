@@ -521,11 +521,11 @@
       "locked": false,
       "fontSize": 20,
       "fontFamily": 1,
-      "text": "Dirt API\nhttps://api.mcmap.org",
+      "text": "Dirt API\nhttps://mcmap.org/api",
       "textAlign": "center",
       "verticalAlign": "middle",
       "containerId": "cJJwAtCla8VowOFdYNkYu",
-      "originalText": "Dirt API\nhttps://api.mcmap.org",
+      "originalText": "Dirt API\nhttps://mcmap.org/api",
       "lineHeight": 1.25,
       "baseline": 43
     },

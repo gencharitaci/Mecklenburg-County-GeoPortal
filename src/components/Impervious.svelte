@@ -51,7 +51,7 @@
       group: "subtheme, category"
     }
 
-    fetch(`https://api.mcmap.org/v1/query/impervious_surface_area?${jsonToURL(params)}`)
+    fetch(`https://mcmap.org/api/v1/query/impervious_surface_area?${jsonToURL(params)}`)
       .then(response => response.json())
       .then(data => {
         // make records for table

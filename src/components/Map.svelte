@@ -68,6 +68,7 @@
       maxBounds: [[-82.641, 34.115], [-79.008, 36.762]],
       preserveDrawingBuffer: navigator.userAgent.toLowerCase().indexOf("firefox") > -1
     }
+    
 
     // set beginning map extent
     if (mapPoints) {
@@ -138,7 +139,10 @@
     map.addControl(new gl.FullscreenControl())
   }
 
-  function toggle() {
+  /**
+   * @param {string} toggleLayers
+   */
+  function toggle(toggleLayers) {
         if (toggleLayers === 'impervious') {
           map.addSource('impervious', {
             "type": "vector",

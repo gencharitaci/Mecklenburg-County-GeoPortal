@@ -109,7 +109,7 @@
       limit: 1
     }
 
-    fetch(`https://api.mcmap.org/v1/intersect_point/watersheds/${lng},${lat},4326?${jsonToURL(params)}`)
+    fetch(`https://mcmap.org/api/v1/intersect_point/watersheds/${lng},${lat},4326?${jsonToURL(params)}`)
       .then(response => response.json())
       .then(data => {
         if (data.length > 0) {
@@ -141,7 +141,7 @@
       geom_column_to: "the_geom"
     }
 
-    fetch(`https://api.mcmap.org/v1/intersect_feature/tax_parcels/post_construction_layers?${jsonToURL(params)}`)
+    fetch(`https://mcmap.org/api/v1/intersect_feature/tax_parcels/post_construction_layers?${jsonToURL(params)}`)
       .then(response => response.json())
       .then(data => {
         if (data.length > 0) {
@@ -177,7 +177,7 @@
       geom_column_to: "geom"
     }
 
-    fetch(`https://api.mcmap.org/v1/intersect_feature/tax_parcels/nc_deq_brownfields?${jsonToURL(params)}`)
+    fetch(`https://mcmap.org/api/v1/intersect_feature/tax_parcels/nc_deq_brownfields?${jsonToURL(params)}`)
       .then(response => response.json())
       .then(data => {
         if (data.length > 0) {
@@ -213,7 +213,7 @@
       geom_column_to: "geom"
     }
 
-    fetch(`https://api.mcmap.org/v1/intersect_feature/tax_parcels/stormwater_conservation_easements?${jsonToURL(params)}`)
+    fetch(`https://mcmap.org/api/v1/intersect_feature/tax_parcels/stormwater_conservation_easements?${jsonToURL(params)}`)
       .then(response => response.json())
       .then(data => {
         if (data.length > 0) {
@@ -250,7 +250,7 @@
       geom_column_to: "the_geom"
     }
 
-    fetch(`https://api.mcmap.org/v1/intersect_feature/tax_parcels/water_quality_buffers?${jsonToURL(params)}`)
+    fetch(`https://mcmap.org/api/v1/intersect_feature/tax_parcels/water_quality_buffers?${jsonToURL(params)}`)
       .then(response => response.json())
       .then(data => {
         if (data.length > 0) {
@@ -284,7 +284,7 @@
       geom_column_to: "the_geom"
     }
 
-    fetch(`https://api.mcmap.org/v1/intersect_feature/tax_parcels/view_regulated_floodplains?${jsonToURL(params)}`)
+    fetch(`https://mcmap.org/api/v1/intersect_feature/tax_parcels/view_regulated_floodplains?${jsonToURL(params)}`)
       .then(response => response.json())
       .then(data => {
         if (data.length > 0) {
@@ -321,7 +321,7 @@
       geom_column_to: "the_geom"
     }
 
-    fetch(`https://api.mcmap.org/v1/intersect_feature/tax_parcels/soil?${jsonToURL(params)}`)
+    fetch(`https://mcmap.org/api/v1/intersect_feature/tax_parcels/soil?${jsonToURL(params)}`)
       .then(response => response.json())
       .then(data => {
         // make records for table

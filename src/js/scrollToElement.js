@@ -1,8 +1,12 @@
+/**
+ * @param {{ getBoundingClientRect: () => { (): any; new (): any; top: any; }; scrollIntoView: (arg0: { behavior: string; }) => void; }} elem
+ */
 export default function scrollToElement(elem) {
   const top = elem.getBoundingClientRect().top
   if (
-    top < window.pageYOffset ||
-    top > window.innerHeight + window.pageYOffset
+    // 'pageYOffset' is deprecated.
+    top < window.scrollY ||
+    top > window.innerHeight + window.scrollY
   ) {
     elem.scrollIntoView({ behavior: 'smooth' })
   }

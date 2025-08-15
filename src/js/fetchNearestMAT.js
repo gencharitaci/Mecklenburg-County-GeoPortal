@@ -1,5 +1,8 @@
 import jsonToURL from './jsonToURL'
 
+/**
+ * @param {any[]} lnglat
+ */
 async function fetchNearestMAT(lnglat) {
   const params = {
     geom_column: "the_geom",

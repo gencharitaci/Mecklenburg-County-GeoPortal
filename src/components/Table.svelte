@@ -9,6 +9,9 @@
   export let alignRight = []
   export let alignCenter = []
 
+  /**
+   * @param {number} idx
+   */
   function textAlign(idx) {
     if (alignRight.indexOf(idx + 1) !== -1) {
       return 'text-right'

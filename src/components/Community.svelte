@@ -40,7 +40,7 @@
   })
 
   function fetchData() {
-    fetch(`https://api.mcmap.org/v1/nearest/neighborhoods/${$location.lnglat.join(',')},4326?${jsonToURL({
+    fetch(`https://mcmap.org/api/v1/nearest/neighborhoods/${$location.lnglat.join(',')},4326?${jsonToURL({
       columns: 'id',
       geom_column: 'the_geom',
       limit: 1

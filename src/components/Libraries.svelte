@@ -42,7 +42,7 @@
       limit: "5"
     }
 
-    fetch(`https://api.mcmap.org/v1/nearest/libraries/${$location.lnglat.join(",")},4326?${jsonToURL(params)}`)
+    fetch(`https://mcmap.org/api/v1/nearest/libraries/${$location.lnglat.join(",")},4326?${jsonToURL(params)}`)
       .then(response => response.json())
       .then(data => {
         // make records for table

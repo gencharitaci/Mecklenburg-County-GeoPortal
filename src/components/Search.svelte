@@ -7,6 +7,8 @@ let items = []
 let nomatch = false
 let spinner = false
 
+let minChar = 4;
+
 // set store to selected value
 function handleHit(event) {
   location.set({
@@ -29,7 +31,7 @@ async function handleQuery(event) {
     limit: 8,
     filter: `ts @@ to_tsquery('addressing_en', '${queryString.toUpperCase().replace(/ /g, '&') + ':*'}') and cde_status='A' and the_geom is not null`
   }
-  urls.push(`https://api.mcmap.org/v1/query/master_address_table?${jsonToURL(addressArg)}`)
+  urls.push(`https://mcmap.org/api/v1/query/master_address_table?${jsonToURL(addressArg)}`)
 
   // parks
   const parkArg = {
@@ -37,7 +39,7 @@ async function handleQuery(event) {
     limit: 5,
     filter: `prkname ilike '%${queryString}%' and p.the_geom && t.the_geom`
   }
-  urls.push(`https://api.mcmap.org/v1/query/parks p, tax_parcels t?${jsonToURL(parkArg)}`)
+  urls.push(`https://mcmap.org/api/v1/query/parks p, tax_parcels t?${jsonToURL(parkArg)}`)
 
   // libraries
   const libraryArg = {
@@ -45,7 +47,7 @@ async function handleQuery(event) {
     limit: 5,
     filter: `name ilike '%${queryString}%' and l.the_geom && p.the_geom`
   }
-  urls.push(`https://api.mcmap.org/v1/query/libraries l, tax_parcels p?${jsonToURL(libraryArg)}`)
+  urls.push(`https://mcmap.org/api/v1/query/libraries l, tax_parcels p?${jsonToURL(libraryArg)}`)
 
   // pid
   if (!isNaN(queryString) && queryString.length >= 7) {
@@ -54,7 +56,7 @@ async function handleQuery(event) {
       limit: 5,
       filter: `num_parent_parcel like '${queryString}%' and the_geom is not null and cde_status='A'`
     }
-    urls.push(`https://api.mcmap.org/v1/query/master_address_table?${jsonToURL(pidArg)}`)
+    urls.push(`https://mcmap.org/api/v1/query/master_address_table?${jsonToURL(pidArg)}`)
   }
 
   // Fetch all the things
@@ -76,4 +78,4 @@ async function handleQuery(event) {
 </script>
 
 
-<AutoComplete placeholder="Try '2145 Suttle' or 'Jetton'" minChar="4" nomatch={nomatch} {items} on:hit={handleHit} on:query={handleQuery} value={$location.address} spinner={spinner} />
+<AutoComplete placeholder="Try '2145 Suttle' or 'Jetton'" minChar={minChar} nomatch={nomatch} {items} on:hit={handleHit} on:query={handleQuery} value={$location.address} spinner={spinner} />
