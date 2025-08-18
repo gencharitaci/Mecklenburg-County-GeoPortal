@@ -204,7 +204,7 @@
 <Table
   rows={schoolsCurrent.rows}
   columns={schoolsCurrent.columns}
-  caption="2024-2025 School Year"
+  caption="2025-2026 School Year"
   alignRight={[4]}
   alignCenter={[5,6,7]}
   footer="*2023-24 school year, North Carolina Department of Public Instruction"
@@ -213,7 +213,7 @@
 <Table
   rows={schoolsFuture.rows}
   columns={schoolsFuture.columns}
-  caption="2025-2026 School Year"
+  caption="2026-2027 School Year"
   alignRight={[4]}
   alignCenter={[5,6,7]}
   footer="*2023-24 school year, North Carolina Department of Public Instruction"
