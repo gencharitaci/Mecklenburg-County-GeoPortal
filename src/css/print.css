@@ -3,7 +3,29 @@
   margin: 0.75in;
 }
 
-.report-pages {
+@media print {
+  .report-pages {
+    page-break-after: always; /* Legacy alias */
+    break-after: always;     /* Modern standard */
+    display: block;          /* Ensures the property is applied correctly */
+  }
+
+  .report-pages:last-of-type {
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+
+  .report-highlight {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    display: block;          /* Ensures the property is applied correctly */
+  }
+}
+
+
+
+/* 'break-after: always' is not supported by Chrome, Chrome Android, Edge, Opera, Safari, Safari on iOS, Samsung Internet. */
+/* .report-pages {
   page-break-after: always;
   break-after: always;
 }
@@ -16,4 +38,4 @@
 .report-highlight {
   page-break-inside: avoid;
   break-inside: avoid;
-}
+} */

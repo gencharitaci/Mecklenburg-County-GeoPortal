@@ -28,6 +28,7 @@
 
   // Local data catchers
   let officials = null;
+  let districts = null;
   let nationalHouse = [];
   let stateSenate = [];
   let stateHouse = [];
@@ -41,96 +42,124 @@
   };
   let mapPoints = [];
 
-  location.subscribe((value) => {
-    Promise.all([
-      fetch(
-        "https://maps.mecklenburgcountync.gov/dirt/api/v1/query/boe_elected_officials?sort=branch,district"
-      ).then((resp) => resp.json()),
-      fetch(
-        `https://maps.mecklenburgcountync.gov/dirt/api/v1/intersect_point/view_political_districts/${$location.lnglat[0]},${$location.lnglat[1]},4326?columns=districttype,district`
-      ).then((resp) => resp.json()),
-    ]).then((data) => {
-      officials = data[0];
+
+    // location.subscribe((value) => {
+    // const [lng, lat] = value.lnglat;
+    
+    // Promise.all([
+    //   fetch(
+    //     "https://maps.mecklenburgcountync.gov/dirt/api/v1/query/boe_elected_officials?sort=branch,district"
+    //     // "https://maps.mecklenburgcountync.gov/dirt/api/v1/query/boe_elected_officials?sort=branch,district&limit=400"
+    //   ).then((resp) => resp.json()),
+    //   fetch(
+    //     `https://maps.mecklenburgcountync.gov/dirt/api/v1/intersect_point/view_political_districts/${$location.lnglat[0]},${$location.lnglat[1]},4326?columns=districttype,district`
+    //   ).then((resp) => resp.json()),
+    // ]).then((data) => {
+    //   officials = [...new Set(data[0])];
+
+  location.subscribe(async (location) => {
+    const [lng, lat] = location.lnglat;
+    try {
+      const [officialsResp, districtsResp] = await Promise.all([
+        fetch(
+          "https://maps.mecklenburgcountync.gov/dirt/api/v1/query/boe_elected_officials?sort=branch,district&limit=365"
+          // "https://maps.mecklenburgcountync.gov/dirt/api/v1/query/boe_elected_officials?sort=branch,district&limit=300"
+        ),
+        fetch(
+          `https://maps.mecklenburgcountync.gov/dirt/api/v1/intersect_point/view_political_districts/${lng},${lat},4326?columns=districttype,district`
+        ),
+      ]);
+
+      // Check if responses are successful before proceeding.
+      if (!officialsResp.ok || !districtsResp.ok) {
+        throw new Error("Failed to fetch data from one or more APIs.");
+      }
+
+      // Convert both responses to JSON using await.
+      const [officialsData, districtsData] = await Promise.all([
+        officialsResp.json(),
+        districtsResp.json(),
+      ]);
 
       // national house
-      nationalHouse = officials.filter(
+      nationalHouse = officialsData.filter(
         (
-          /** @type {{ branch: string | string[]; district: any; }} */
           el
         ) =>
           el.branch.indexOf("US House of Representatives") !== -1 &&
           el.district ===
-            data[1].filter(
+            districtsData.filter(
               (
-                /** @type {{ districttype: string; }} */
                 el
               ) => el.districttype === "national_congressional"
             )[0].district
       );
+
+
       // county commsion
-      countyCommission = officials.filter(
-        (/** @type {{ branch: string | string[]; district: string; }} */ el) =>
+      countyCommission = officialsData.filter(
+        (el) =>
           el.branch.indexOf("Board of Commissioners") !== -1 &&
           (el.district ===
-            data[1].filter(
-              (/** @type {{ districttype: string; }} */ el) =>
+            districtsData.filter(
+              (el) =>
                 el.districttype === "county_commission"
             )[0].district ||
             el.district === "At-Large")
       );
       // school board
-      countyBoard = officials.filter(
-        (/** @type {{ branch: string | string[]; district: string; }} */ el) =>
+      countyBoard = officialsData.filter(
+        (el) =>
           el.branch.indexOf("Board of Education") !== -1 &&
           (el.district ===
-            data[1].filter(
-              (/** @type {{ districttype: string; }} */ el) =>
+            districtsData.filter(
+              (el) =>
                 el.districttype === "school_board"
             )[0].district ||
             el.district === "At-Large")
       );
       // state senate
-      stateSenate = officials.filter(
+      stateSenate = officialsData.filter(
         (/** @type {{ branch: string | string[]; district: any; }} */ el) =>
           el.branch.indexOf("NC State Senate") !== -1 &&
           el.district ===
-            data[1].filter(
-              (/** @type {{ districttype: string; }} */ el) =>
+            districtsData.filter(
+              (el) =>
                 el.districttype === "state_senate"
             )[0].district
       );
       // state house
-      stateHouse = officials.filter(
+      stateHouse = officialsData.filter(
         (/** @type {{ branch: string | string[]; district: any; }} */ el) =>
           el.branch.indexOf("NC House of Representatives") !== -1 &&
           el.district ===
-            data[1].filter(
-              (/** @type {{ districttype: string; }} */ el) =>
+            districtsData.filter(
+              (el) =>
                 el.districttype === "state_house"
             )[0].district
       );
       // local
       if (
-        data[1].filter(
-          (/** @type {{ districttype: string; }} */ el) =>
+        districtsData.filter(
+          (el) =>
             el.districttype === "charlotte_city_council"
         ).length > 0
       ) {
         // charlotte
-        local = officials.filter(
+        local = officialsData.filter(
           (
             /** @type {{ branch: string | string[]; district: string; }} */ el
           ) =>
             el.branch.indexOf("Charlotte") !== -1 &&
             (el.district ===
-              data[1].filter(
-                (/** @type {{ districttype: string; }} */ el) =>
+              districtsData.filter(
+                (el) =>
                   el.districttype === "charlotte_city_council"
               )[0].district ||
               el.district === "At-Large")
         );
       } else if (
-        data[1].filter(
+        districtsData.filter(
           (/** @type {{ districttype: string; district: string; }} */ el) =>
             el.districttype === "jurisdictions" &&
             el.district != "Stallings" &&
@@ -138,24 +167,32 @@
         ).length > 0
       ) {
         // towns
-        local = officials.filter(
+        local = officialsData.filter(
           (/** @type {{ branch: string | any[]; }} */ el) =>
             el.branch.indexOf(
-              data[1].filter(
-                (/** @type {{ districttype: string; }} */ el) =>
+              districtsData.filter(
+                (el) =>
                   el.districttype === "jurisdictions"
               )[0].district
             ) !== -1
         );
       }
 
+      
       fetchPollingLocation(
-        data[1].filter(
-          (/** @type {{ districttype: string; }} */ el) =>
+        districtsData.filter(
+          (el) =>
             el.districttype === "voting_precincts"
         )[0].district
       );
-    });
+      
+      officials = officialsData;
+      
+
+      } catch (error) {
+    // Handle any errors that occurred during the fetch.
+    console.error("Error fetching location data:", error);
+  }
   });
 
   /**
@@ -208,26 +245,23 @@
   />
 </div>
 
+
 {#if officials}
   <!-- National -->
   <div class="flex flex-row flex-wrap justify-around print:block">
     <h2 class="voting-h2">National</h2>
     <Representative
       reps={officials.filter(
-        (/** @type {{ branch: string; }} */ el) =>
-          el.branch === "President of the United States"
+        (el) => el.branch === "President of the United States"
       )}
     />
     <Representative
       reps={officials.filter(
-        (/** @type {{ branch: string; }} */ el) =>
-          el.branch === "Vice President of the United States"
+        (el) => el.branch === "Vice President of the United States"
       )}
     />
     <Representative
-      reps={officials.filter(
-        (/** @type {{ branch: string; }} */ el) => el.branch === "US Senate"
-      )}
+      reps={officials.filter((el) => el.branch === "US Senate")}
     />
     <Representative reps={nationalHouse} />
   </div>
@@ -236,10 +270,7 @@
   <div class="flex flex-row flex-wrap justify-around print:block">
     <h2 class="voting-h2">State</h2>
     <Representative
-      reps={officials.filter(
-        (/** @type {{ branch: string | string[]; }} */ el) =>
-          el.branch.indexOf("Governor") !== -1
-      )}
+      reps={officials.filter((el) => el.branch.indexOf("Governor") !== -1)}
     />
     <Representative reps={stateSenate} />
     <Representative reps={stateHouse} />

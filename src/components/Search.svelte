@@ -27,9 +27,9 @@ async function handleQuery(event) {
 
   // address
   const addressArg = {
-    columns: "full_address as value, 'ADDRESS' as type, groundpid, round(ST_X(ST_Transform(the_geom, 4326))::NUMERIC,4) as lng, round(ST_Y(ST_Transform(the_geom, 4326))::NUMERIC,4) as lat, num_parent_parcel as pid, full_address as address",
+    columns: "full_address as value, 'ADDRESS' as type, groundpid, round(ST_X(ST_Transform(shape, 4326))::NUMERIC,4) as lng, round(ST_Y(ST_Transform(shape, 4326))::NUMERIC,4) as lat, num_parent_parcel as pid, full_address as address",
     limit: 8,
-    filter: `ts @@ to_tsquery('addressing_en', '${queryString.toUpperCase().replace(/ /g, '&') + ':*'}') and cde_status='A' and the_geom is not null`
+    filter: `ts @@ to_tsquery('addressing_en', '${queryString.toUpperCase().replace(/ /g, '&') + ':*'}') and cde_status='A' and shape is not null`
   }
   urls.push(`https://maps.mecklenburgcountync.gov/dirt/api/v1/query/master_address_table?${jsonToURL(addressArg)}`)
 
@@ -52,9 +52,9 @@ async function handleQuery(event) {
   // pid
   if (!isNaN(queryString) && queryString.length >= 7) {
     const pidArg = {
-      columns: `num_parent_parcel as value, 'PARCEL' as type, groundpid, round(ST_X(ST_Transform(the_geom, 4326))::NUMERIC,4) as lng, round(ST_Y(ST_Transform(the_geom, 4326))::NUMERIC,4) as lat, num_parent_parcel as pid, full_address as address`,
+      columns: `num_parent_parcel as value, 'PARCEL' as type, groundpid, round(ST_X(ST_Transform(shape, 4326))::NUMERIC,4) as lng, round(ST_Y(ST_Transform(shape, 4326))::NUMERIC,4) as lat, num_parent_parcel as pid, full_address as address`,
       limit: 5,
-      filter: `num_parent_parcel like '${queryString}%' and the_geom is not null and cde_status='A'`
+      filter: `num_parent_parcel like '${queryString}%' and shape is not null and cde_status='A'`
     }
     urls.push(`https://maps.mecklenburgcountync.gov/dirt/api/v1/query/master_address_table?${jsonToURL(pidArg)}`)
   }

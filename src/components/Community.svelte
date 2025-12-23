@@ -175,7 +175,7 @@
             on:click={() => {handleMapLink(data, metricConfig.filter(el => el.metric === metric)[0])}}
             on:keypress={() => {handleMapLink(data, metricConfig.filter(el => el.metric === metric)[0])}}
             >
-            <svg class="w-5 h-5 block m-auto fill-current">
+            <svg aria-hidden="true" tabindex="-1" class="w-5 h-5 block m-auto fill-current">
               <title>show on map</title>
               <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-map2"></use>
             </svg>
@@ -226,7 +226,7 @@
 </table>
 </div>
 
-<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="0" height="0">
+<svg aria-hidden="true" tabindex="-1" xmlns="http://www.w3.org/2000/svg" width="0" height="0">
   <symbol id="icon-map2" viewBox="0 0 32 32">
     <path d="M21 6l-10-4-11 4v24l11-4 10 4 11-4v-24l-11 4zM12 4.554l8 3.2v19.692l-8-3.2v-19.692zM2 7.401l8-2.909v19.744l-8 2.909v-19.744zM30 24.599l-8 2.909v-19.744l8-2.909v19.744z"></path>
     </symbol>

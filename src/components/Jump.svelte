@@ -2,12 +2,21 @@
 import { activeTabs, tabs, scroll, location } from '../store.js'
 
 
-function setButtonStyle(tab) {
-  if ($activeTabs.filter(elem => elem === tab).length === 0) {
-    return 'bg-gray-200 hover:bg-gray-300 text-gray-800'
+// function setButtonStyle(tab) {
+//   if ($activeTabs.filter(elem => elem === tab).length === 0) {
+//     return 'bg-gray-200 hover:bg-gray-300 text-gray-800'
+//   }
+//   return 'shadow-md bg-sky-600 shadow-slate-600/50 hover:bg-sky-800 hover:shadow-sky-800/50 text-white'
+// }
+
+
+function setButtonStyle(tab, activeTabs) {
+  if (activeTabs.filter(elem => elem === tab).length === 0) {
+    return 'bg-gray-300 hover:bg-gray-400 text-gray-900 hover:text-white hover:shadow-gray-800/50'
   }
-  return 'shadow-md bg-sky-600 shadow-slate-600/50 hover:bg-sky-800 hover:shadow-sky-800/50 text-white'
+  return 'shadow-md bg-sky-700 shadow-slate-600/50 hover:bg-sky-800 hover:shadow-sky-800/50 text-white'
 }
+
 
 // update active tabs
 const setTab = (tab) => () => {

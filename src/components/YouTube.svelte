@@ -1,32 +1,46 @@
 <script>
   let tutorialIframe;
 
-  /**
-   * @param {any} vidId
-   */
-  function loadVideo(vidId) {
+  function loadVideo(event) {
+    const embedId = event.currentTarget.dataset.embed;
+    // Set a meaningful title dynamically when loading the video
+    tutorialIframe.setAttribute(
+      "title",
+      "GeoPortal video tutorial - Now Playing"
+    );
     tutorialIframe.setAttribute(
       "src",
-      `https://www.youtube.com/embed/${this.dataset.embed}?autoplay=1`
+      `https://www.youtube.com/embed/${embedId}?autoplay=1`
     );
     tutorialIframe.classList.remove("hidden");
   }
 </script>
 
+<div class="video-player-container w-full h-full">
+  <!-- Accessible Play Button -->
+  <div
+    role="button"
+    tabindex="0"
+    aria-label="Play tutorial video"
+    class="play-button"
+    data-embed="agzk5yeHafg"
+    on:click={loadVideo}
+    on:keypress={loadVideo}
+    on:keydown={(e) => (e.key === "Enter" || e.key === " ") && loadVideo(e)}
+  >
+    <span class="visually-hidden hidden">Play tutorial video</span>
+  </div>
 
-<div
-  class="play-button"
-  on:click|once={loadVideo}
-  on:keypress={loadVideo}
-  data-embed="agzk5yeHafg"
-></div>
-
-<iframe
-  bind:this={tutorialIframe}
-  class="absolute hidden w-full h-full z-20"
-  frameborder="0"
-  title="video tutorial"
-/>
+  <!-- Video Iframe -->
+  <iframe
+    bind:this={tutorialIframe}
+    class="video-iframe absolute hidden w-full h-full z-20"
+    frameborder="0"
+    title="GeoPortal video tutorial"
+    allow="autoplay; encrypted-media"
+    allowfullscreen
+  ></iframe>
+</div>
 
 <style>
   .play-button {
@@ -50,5 +64,10 @@
     top: 50%;
     left: 50%;
     transform: translate3d(-50%, -50%, 0);
+  }
+  .play-button:focus,
+  .play-button:focus-visible {
+    outline: 2px solid #000; 
+    outline-offset: 2px; 
   }
 </style>

@@ -1,178 +1,276 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Discover data about places in your community.">
-  <meta name="author" content="Tobin Bradley">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Discover data about places in your community."
+    />
+    <meta name="author" content="Adem Kurtipek" />
 
-  <title>GeoPortal - Mecklenburg County GIS</title>
+    <title>GeoPortal - Mecklenburg County GIS</title>
 
-  <!-- Open Graph -->
-  <meta property="og:url" content="maps.mecklenburgcountync.gov/geoportal">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="GeoPortal - Mecklenburg County GIS">
-  <meta property="og:description" content="Discover data about places in your community.">
-  <meta property="og:image" content="maps.mecklenburgcountync.gov/geoportal/img/android-icon-512.png">
-  <meta property="og:image:width" content="512">
-  <meta property="og:image:height" content="512">
+    <!-- Open Graph -->
+    <meta property="og:url" content="maps.mecklenburgcountync.gov/geoportal" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GeoPortal - Mecklenburg County GIS" />
+    <meta
+      property="og:description"
+      content="Discover data about places in your community."
+    />
+    <meta
+      property="og:image"
+      content="maps.mecklenburgcountync.gov/geoportal/img/android-icon-512.png"
+    />
+    <meta property="og:image:width" content="512" />
+    <meta property="og:image:height" content="512" />
 
-  <!-- preconnect for performance -->
-  <link rel="preconnect" href="https://www.google-analytics.com">
-  <link rel="preconnect" href="https://storage.googleapis.com">
+    <!-- preconnect for performance -->
+    <link rel="preconnect" href="https://www.google-analytics.com" />
+    <link rel="preconnect" href="https://storage.googleapis.com" />
 
-  <!-- icon and theme stuff -->
-  <link rel="icon" href="img/favicon.png" type="image/png"><!-- 32×32 -->
-  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="img/apple-touch-icon.png"><!-- 180×180 -->
-  <meta name="theme-color" content="#2A4365"/>
-  <link rel="manifest" href="manifest.json">
+    <!-- icon and theme stuff -->
+    <link rel="icon" href="img/favicon.png" type="image/png" />
+    <!-- 32×32 -->
+    <link rel="icon" href="img/logo.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png" />
+    <!-- 180×180 -->
+    <meta name="theme-color" content="#2A4365" />
+    <link rel="manifest" href="manifest.json" />
 
-  <!-- preload logo for performance -->
-  <link rel="preload" href="./img/logo.svg" as="image">
+    <!-- preload logo for performance -->
+    <link rel="preload" href="./img/logo.svg" as="image" />
+  </head>
 
-</head>
-
-<body class="flex flex-col h-screen bg-white dark:bg-slate-800 dark:text-white">
-
-  <!-- header -->
-  <nav class="bg-sky-900 dark:bg-slate-800 shadow-lg dark:shadow-none print:hidden dark:border-b dark:border-slate-300/10">
-    <div class="flex justify-between flex-wrap px-5 py-2 md:py-4 max-w-7xl mx-auto">
-      <div class="flex items-center flex-shrink-0 text-white mr-6">
-
-        <a href="./">
-          <span class="font-semibold text-xl tracking-wide"><span class="hidden md:inline">Mecklenburg County
-            </span>GeoPortal</span>
-        </a>
-      </div>
-      <div>
-        <button
-          class="btn text-sm leading-none border text-white border-white hover:border-transparent hover:text-blue-900 hover:bg-white hidden transition-colors duration-200 ease-in-out"
-          id="print"
-          onclick="window.print()">PRINT</button>
-      </div>
-    </div>
-  </nav>
-
-
-  <!-- main content -->
-  <main class="w-full max-w-7xl mx-auto p-10 print:py-1 flex-grow">
-
-            <!-- Added Disclaimer Modal Popup / 12/12/2024 -->
-            <div id="disclaimer"></div>
-
-            
-    <div class="text-center print:hidden">
-      <h1 class="text-xl md:text-3xl">
-        Discover data about <strong class="text-orange-600">places</strong> in your community.
-      </h1>
-      <h2 class="text-base md:text-2xl pt-2">
-        Search for an address or place to get started!
-      </h2>
-    </div>
-
-    <div id="search" class="print:hidden mt-10 mb-5 md:mx-24" style="min-height: 50px;"></div>
-
-    <div id="app"></div>
-
-    <div id="tutorial" class="max-w-4xl mx-auto mt-16 mb-8 flex justify-center items-center print:hidden relative w-full aspect-video" style="background: url(img/logo.svg) center center no-repeat; background-size: contain;"></div>
-
-
-  </main>
-
-
-  <!-- footer -->
-  <footer class="bg-sky-900 dark:bg-slate-800 w-full print:hidden">
-    <div class="grid grid-cols-1 md:grid-cols-3 text-slate-200 max-w-7xl mx-auto">
-
-      <!-- about GeoPortal -->
-      <div class="p-5 border-r border-sky-800 dark:border-slate-700">
-        <h3 class="mt-6 mb-3 ml-3 text-xl font-semibold">ABOUT GEOPORTAL</h3>
-        <p class="p-3">
-          GeoPortal was created by Mecklenburg County GIS and is <a class="underline" rel="noopener"
-            href="https://en.wikipedia.org/wiki/Open_source" target="_blank">free and open source software</a>. You can
-          find the <a class="underline" rel="noopener" target="_blank"
-            href="https://github.com/tobinbradley/Mecklenburg-County-GeoPortal">source code on Github</a>.
-          Pull requests are welcome!
-        </p>
-        <p class="p-3">
-          GeoPortal would not be possible without a number of amazing open source projects, including
-          <a class="underline" rel="noopener" href="https://www.openstreetmap.org/" target="_blank">OpenStreetMap</a>,
-          <a class="underline" rel="noopener" href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a>,
-          <a class="underline" rel="noopener" href="https://www.mapbox.com/mapbox-gl-js/api/" target="_blank">Mapbox GL
-            JS</a>,
-          and <a class="underline" rel="noopener" href="https://svelte.dev/" target="_blank">Svelte</a>.
-        </p>
-      </div>
-
-      <!-- about data -->
-      <div class="p-5 border-r border-sky-800 dark:border-slate-700">
-        <h3 class="mt-6 mb-3 ml-3 text-xl font-semibold">ABOUT THE DATA</h3>
-        <p class="p-3">
-          Whenever possible, Mecklenburg County GIS releases its data as <a class="underline" rel="noopener"
-            href="https://en.wikipedia.org/wiki/Open_data" target="_blank">open data</a>. Each section of GeoPortal
-          includes links to the data used. Check out our
-          <a class="underline" rel="noopener" href="https://en.wikipedia.org/wiki/Open_data" target="_blank">Open
-            Mapping</a> project to find
-          more data
-          and open source projects.
-        </p>
-        <p class="p-3">
-          If you don't already have software to read spatial data,
-          we recommend <a class="underline" rel="noopener" target="_blank" href="https://www.qgis.org/en/site/">QGIS</a>,
-          a free and open source desktop GIS.
-        </p>
-      </div>
-
-      <!-- about us -->
-      <div class="p-5">
-        <h3 class="mt-6 mb-3 ml-3 text-xl font-semibold">ABOUT US</h3>
-        <p class="p-3">
-          <a class="underline" rel="noopener" href="https://www.mecknc.gov/LUESA/GIS/Pages/Default.aspx"
-            target="_blank">Mecklenburg County GIS</a>'s
-          mission is to provide quality geospatial data and technology solutions, empowering customers of Mecklenburg
-          County to make
-          data-driven decisions.
-        </p>
-        <p class="p-3">
-          <a rel="noopener"
-            class="btn border border-white bg-transparent hover:bg-white hover:text-blue-900 transition-colors duration-200 ease-in-out text-white"
-            target="_blank"
-            href="https://twitter.com/MeckGIS">
-              @MeckGIS
+  <body
+    class="flex flex-col h-screen bg-white dark:bg-slate-800 dark:text-white"
+  >
+    <!-- header -->
+    <nav
+      class="bg-sky-900 dark:bg-slate-800 shadow-lg dark:shadow-none print:hidden dark:border-b dark:border-slate-300/10"
+    >
+      <div
+        class="flex justify-between flex-wrap px-5 py-2 md:py-4 max-w-7xl mx-auto"
+      >
+        <div class="flex items-center flex-shrink-0 text-white mr-6">
+          <a
+            href="./"
+            class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 rounded-sm"
+          >
+            <span class="font-semibold text-2xl tracking-wide">
+              <span class="hidden md:inline">Mecklenburg County </span>
+              GeoPortal
+            </span>
           </a>
-        </p>
+        </div>
+        <div>
+          <button
+            class="btn text-sm leading-none border text-white border-white hover:border-transparent hover:text-blue-900 hover:bg-white hidden transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            id="print"
+            onclick="window.print()"
+            type="button"
+          >
+            PRINT
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- main content -->
+    <main
+      aria-labelledby="main-title"
+      class="w-full max-w-7xl mx-auto p-10 print:py-1 flex-grow"
+    >
+      <!-- Added Disclaimer Modal Popup / 12/12/2024 -->
+      <div id="disclaimer"></div>
+
+      <div class="text-center print:hidden">
+        <h1 id="main-title" class="text-xl md:text-3xl">
+          Discover data about <strong class="text-orange-600">places</strong> in
+          your community.
+        </h1>
+        <h2 class="text-base md:text-2xl pt-2">
+          Search for an address or place to get started!
+        </h2>
       </div>
 
-    </div>
-  </footer>
+      <div
+        id="search"
+        class="print:hidden mt-10 mb-5 md:mx-24"
+        style="min-height: 50px"
+      ></div>
 
-  <div id="backtotop" class="print:hidden"></div>
+      <div id="app"></div>
 
-  <!-- service worker dialog -->
-  <dialog id="sw-dialog" class=" bg-orange-500 text-white px-3 py-2 rounded-r-md border-l-2 border-white shadow-lg">
-    <div class="flex place-items-center">
-      <div class="flex-1 pr-8 text-lg">
-        GeoPortal has been updated!
+      <div
+        id="tutorial"
+        class="max-w-4xl mx-auto mt-16 mb-8 flex justify-center items-center print:hidden relative w-full aspect-video"
+        style="
+          background: url(img/logo.svg) center center no-repeat;
+          background-size: contain;
+        "
+      ></div>
+    </main>
+
+    <footer class="bg-sky-900 dark:bg-slate-800 w-full print:hidden">
+      <div
+        class="grid grid-cols-1 md:grid-cols-3 text-slate-100 max-w-7xl mx-auto"
+      >
+        <section class="p-5 border-r border-sky-800 dark:border-slate-700">
+          <h3 class="mt-6 mb-3 ml-3 text-xl font-semibold">ABOUT GEOPORTAL</h3>
+          <p class="p-3">
+            GeoPortal was created by Mecklenburg County GIS and is
+            <a
+              class="underline text-slate-100 hover:text-white focus:text-white  focus:ring-2 focus:ring-white"
+              rel="noopener"
+              href="https://en.wikipedia.org/wiki/Open_source"
+              target="_blank"
+              >free and open source software</a
+            >. You can find the
+            <a
+              class="underline text-slate-100 hover:text-sky-400 focus:text-sky-400  focus:ring-2 focus:ring-white"
+              rel="noopener"
+              target="_blank"
+              href="https://github.com/gencharitaci/Mecklenburg-County-GeoPortal"
+            >
+              source code on Github
+            </a>
+            >. Pull requests are welcome!
+          </p>
+          <p class="p-3">
+            GeoPortal would not be possible without a number of amazing open
+            source projects, including
+            <a
+              class="underline text-slate-100 hover:text-white focus:text-white  focus:ring-2 focus:ring-white"
+              rel="noopener"
+              href="https://www.openstreetmap.org/"
+              target="_blank"
+              >OpenStreetMap</a
+            >,
+            <a
+              class="underline text-slate-100 hover:text-white focus:text-white  focus:ring-2 focus:ring-white"
+              rel="noopener"
+              href="https://openmaptiles.org/"
+              target="_blank"
+              >OpenMapTiles</a
+            >,
+            <a
+              class="underline text-slate-100 hover:text-white focus:text-white  focus:ring-2 focus:ring-white"
+              rel="noopener"
+              href="https://www.mapbox.com/mapbox-gl-js/api/"
+              target="_blank"
+              >Mapbox GL JS</a
+            >, and
+            <a
+              class="underline text-slate-100 hover:text-white focus:text-white  focus:ring-2 focus:ring-white"
+              rel="noopener"
+              href="https://svelte.dev/"
+              target="_blank"
+              >Svelte</a
+            >.
+          </p>
+        </section>
+
+        <section class="p-5 border-r border-sky-800 dark:border-slate-700">
+          <h3 class="mt-6 mb-3 ml-3 text-xl font-semibold">ABOUT THE DATA</h3>
+          <p class="p-3">
+            Whenever possible, Mecklenburg County GIS releases its data as
+            <a
+              class="underline text-slate-100 hover:text-white focus:text-white  focus:ring-2 focus:ring-white"
+              rel="noopener"
+              href="https://en.wikipedia.org/wiki/Open_data"
+              target="_blank"
+              >open data</a
+            >. Each section of GeoPortal includes links to the data used. Check
+            out our
+            <a
+              class="underline text-slate-100 hover:text-white focus:text-white  focus:ring-2 focus:ring-white"
+              rel="noopener"
+              href="https://en.wikipedia.org/wiki/Open_data"
+              target="_blank"
+              >Open Mapping</a
+            >
+            project to find more data and open source projects.
+          </p>
+          <p class="p-3">
+            If you don't already have software to read spatial data, we
+            recommend
+            <a
+              class="underline text-slate-100 hover:text-white focus:text-white  focus:ring-2 focus:ring-white"
+              rel="noopener"
+              target="_blank"
+              href="https://www.qgis.org/en/site/"
+              >QGIS</a
+            >, a free and open source desktop GIS.
+          </p>
+        </section>
+
+        <section class="p-5">
+          <h3 class="mt-6 mb-3 ml-3 text-xl font-semibold">ABOUT US</h3>
+          <p class="p-3">
+            <a
+              class="underline text-slate-100 hover:text-white focus:text-white  focus:ring-2 focus:ring-white"
+              rel="noopener"
+              href="https://www.mecknc.gov/LUESA/GIS/Pages/Default.aspx"
+              target="_blank"
+              >Mecklenburg County GIS</a
+            >'s mission is to provide quality geospatial data and technology
+            solutions, empowering customers of Mecklenburg County to make
+            data-driven decisions.
+          </p>
+          <p class="p-3">
+            <a
+              rel="noopener"
+              class="btn border border-white bg-transparent text-white hover:bg-white hover:text-blue-900 focus:outline-none focus:ring-2 focus:ring-white"
+              target="_blank"
+              href="https://twitter.com/MeckGIS"
+            >
+              @MeckGIS
+            </a>
+          </p>
+        </section>
       </div>
-      <div>
-        <button class="btn bg-white text-orange-800 hover:bg-orange-600 hover:text-white transition-colors duration-300" onclick="window.location.reload()">Refresh</button>
+    </footer>
+
+    <div id="backtotop" class="print:hidden"></div>
+
+    <!-- service worker dialog -->
+    <dialog
+      id="sw-dialog"
+      class="bg-orange-500 text-white px-3 py-2 rounded-r-md border-l-2 border-white shadow-lg"
+    >
+      <div class="flex place-items-center">
+        <div class="flex-1 pr-8 text-lg">GeoPortal has been updated!</div>
+        <div>
+          <button
+            class="btn bg-white text-orange-800 hover:bg-orange-600 hover:text-white transition-colors duration-300"
+            aria-label="Refresh current page"
+            type="button"
+            onclick="window.location.reload()"
+          >
+            Refresh
+          </button>
+        </div>
       </div>
-    </div>
-  </dialog>
+    </dialog>
 
-  <script type="module" src="/src/main.js"></script>
+    <script type="module" src="/src/main.js"></script>
 
-  <!--   Start / Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TCH17QGGW6"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+    <!--   Start / Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-TCH17QGGW6"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-    gtag('config', 'G-TCH17QGGW6');
-  </script>
-  <!-- End / Google Analytics -->
-
-</body>
+      gtag("config", "G-TCH17QGGW6");
+    </script>
+    <!-- End / Google Analytics -->
+  </body>
 </html>

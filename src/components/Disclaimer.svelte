@@ -29,7 +29,10 @@
     // localStorage.setItem("disclaimerAccepted", "true");
 
     // Update local storage based on whether the checkbox was checked
-    localStorage.setItem("disclaimerAcceptedGP", doNotShowAgain ? "true" : "false");
+    localStorage.setItem(
+      "disclaimerAcceptedGP",
+      doNotShowAgain ? "true" : "false"
+    );
     hideDisclaimer();
   }
 
@@ -42,12 +45,24 @@
   });
 </script>
 
-
-<div id="disclaimerOverlay" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-20 transition-all duration-1000 ease-in-out animate-[fade-in_1s_ease-in-out]" style="animation: fade-in 2s ease-in-out;">
-  <div class="max-w-md my-3 overflow-x-auto bg-white rounded-lg shadow-lg">
+<div
+  id="disclaimerOverlay"
+  class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-20 transition-all duration-1000 ease-in-out animate-[fade-in_1s_ease-in-out]"
+  style="animation: fade-in 2s ease-in-out;"
+>
+  <!-- Added role="dialog" and aria-modal="true" -->
+  <div
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="dialog-title"
+    aria-describedby="dialog-description"
+    class="max-w-md my-3 overflow-x-auto bg-white rounded-lg shadow-lg"
+  >
     <div class="flex px-2 py-2 border-b border-gray-200">
       <div class="flex items-center justify-center w-5">
         <svg
+          aria-hidden="true"
+          tabindex="-1"
           class="w-6 h-6 text-blue-500 fill-current"
           viewBox="0 0 40 40"
           xmlns="http://www.w3.org/2000/svg"
@@ -57,26 +72,44 @@
           />
         </svg>
       </div>
-      <span class="ml-2 text-lg font-bold text-gray-700">Disclaimer</span>
+      <!-- Added id="dialog-title" -->
+      <span id="dialog-title" class="ml-2 text-lg font-bold text-gray-700"
+        >Disclaimer</span
+      >
     </div>
 
-    <div class="px-5 py-2 text-gray-600 text-justify">
-      This GIS tool provides information for general reference only and should not be considered a legal document. 
-      Data may not be completely accurate and users should always consult primary sources, 
-      such as recorded deeds and plats, to verify information before making any decisions based on this data. 
-      Mecklenburg County, NC assumes no liability for errors or omissions within the GIS data 
-      and provides it 'as is' without warranty <span class="text-red-900">(NCGS 153A-463)</span>.
+    <!-- Added id="dialog-description" -->
+    <div id="dialog-description" class="px-5 py-2 text-gray-600 text-justify">
+      This GIS tool provides information for general reference only and should
+      not be considered a legal document. Data may not be completely accurate
+      and users should always consult primary sources, such as recorded deeds
+      and plats, to verify information before making any decisions based on this
+      data. Mecklenburg County, NC assumes no liability for errors or omissions
+      within the GIS data and provides it 'as is' without warranty <span
+        class="text-red-900">(NCGS 153A-463)</span
+      >.
     </div>
 
-    <div class="flex justify-between px-5 py-2 bg-gray-100 border-t border-gray-300">
+    <div
+      class="flex justify-between px-5 py-2 bg-gray-100 border-t border-gray-300"
+    >
       <div>
-        <input type="checkbox" bind:checked={doNotShowAgain} class="accent-zinc-500" /> Don't show again
+        <input
+          type="checkbox"
+          id="doNotShowAgain"
+          class="accent-zinc-500"
+        />
+        <label for="doNotShowAgain">Don't show again</label>
       </div>
+      <!-- Add a specific ID for JavaScript focus management -->
       <button
-        class="px-3 py-2 text-sm text-black font-bold transition duration-150 hover:text-gray-700"
+        id="acceptButton"
+        class="px-3 py-2 text-sm text-black font-bold transition duration-150 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" 
+         type="button"
         on:click={handleCloseClick}
-      >Accept</button>
+      >
+        Accept
+      </button>
     </div>
   </div>
 </div>
-

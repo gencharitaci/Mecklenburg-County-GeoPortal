@@ -28,7 +28,7 @@ If the `VITE_AERIALS` environmental variable is not supplied, the aerial toggle 
 
 ### Clone the project
 ```bash
-git clone https://github.com/tobinbradley/Mecklenburg-County-GeoPortal.git geoportal
+git clone https://github.com/gencharitaci/Mecklenburg-County-GeoPortal.git geoportal
 ```
 
 ### Install dependencies

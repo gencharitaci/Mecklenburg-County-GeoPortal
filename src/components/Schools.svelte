@@ -115,6 +115,8 @@
               let grades = []
 
               Object.keys(elem[0]).forEach(key => {
+                console.log(key);
+                
                 if (elem[0][key] === scl) grades.push(key.replace("grade", '').toUpperCase())
               })
 

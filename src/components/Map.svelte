@@ -139,9 +139,7 @@
     map.addControl(new gl.FullscreenControl())
   }
 
-  /**
-   * @param {string} toggleLayers
-   */
+
   function toggle(toggleLayers) {
         if (toggleLayers === 'impervious') {
           map.addSource('impervious', {
