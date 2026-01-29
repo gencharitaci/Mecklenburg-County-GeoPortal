@@ -44,7 +44,7 @@
     {#if rows}
     <tbody>
       {#each rows as row, idx}
-        <tr class="transition-colors duration-200 ease-in-out}">
+        <tr class="transition-colors duration-200 ease-in-out">
           {#each row as elem, i}
             <td data-label="{ columns[i] }" class="{textAlign(i)}">
               {@html elem }
