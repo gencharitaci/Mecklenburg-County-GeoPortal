@@ -2,6 +2,10 @@
   @apply bg-gray-100 dark:bg-slate-700;
 }
 
+.table-component tr:nth-child(even) a {
+  @apply dark:text-sky-200;
+}
+
 .table-component thead tr {
   @apply border-b-2 border-slate-500;
 }
