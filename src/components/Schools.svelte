@@ -224,7 +224,7 @@
 <Table
   rows={magnetTable.rows}
   columns={magnetTable.columns}
-  caption={'Magnet Schools (You Are in <a href="https://cmschoice.org/your-choices/schools/" target="_blank">Zone ' + zone + '</a>)'}
+  caption={'Magnet Schools (You Are in <a href="https://cmschoice.org/your-choices/schools/" target="_blank" rel="nofollow noopener noreferrer external">Zone ' + zone + '</a>)'}
   alignRight={[5]}
 />
 
@@ -235,12 +235,12 @@
   Magnet schools are assigned a zone to serve with transportation. Some programs
   provide county-wide transportation, meaning that regardless of your zone,
   you would receive transportation. For more information please contact
-  Charlotte-Mecklenburg School Transportation Services at <a href="tel:9803436715">(980) 343-6715</a>.
+  Charlotte-Mecklenburg School Transportation Services at <a href="tel:9803436715" rel="nofollow noopener noreferrer external">(980) 343-6715</a>.
 </p>
 
 <p class="pt-2 pb-8">
   School assignment information is based on data provided by Charlotte-Mecklenburg Schools and Mecklenburg
-  County GIS. For questions, concerns, or confirmation of schools assignments, please contact Charlotte-Mecklenburg Schools at <a href="email:planning@cms.k12.nc.us">planning@cms.k12.nc.us</a> or <a href="tel:9803436246">(980) 343-6246</a>.
+  County GIS. For questions, concerns, or confirmation of schools assignments, please contact Charlotte-Mecklenburg Schools at <a href="email:planning@cms.k12.nc.us" rel="nofollow noopener noreferrer external">planning@cms.k12.nc.us</a> or <a href="tel:9803436246" rel="nofollow noopener noreferrer external">(980) 343-6246</a>.
 </p>
 
 <Resources links={resourceLinks} />
