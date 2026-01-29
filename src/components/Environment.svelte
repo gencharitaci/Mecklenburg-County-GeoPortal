@@ -114,7 +114,7 @@
       .then(data => {
         if (data.length > 0) {
           const warning = data[0].type.length > 1 ?
-            `This is a <a href="http://charlottenc.gov/StormWater/Regulations/Documents/WatershedRulesSummary.pdf" target="_blank"  rel="noopener">${data[0].type} watershed (${data[0].subarea})</a>.<br>`
+            `This is a <a href="http://charlottenc.gov/StormWater/Regulations/Documents/WatershedRulesSummary.pdf" target="_blank"  rel="nofollow noopener noreferrer external">${data[0].type} watershed (${data[0].subarea})</a>.<br>`
             : ''
           watershedReport = {
             top: 'This property is in the',
@@ -148,7 +148,7 @@
           districtReport = {
             top: 'This property is in a',
             sub: 'PCSO Mitigation Options Apply',
-            detail: 'Post-Construction Stormwater Control ordinances ensure that new developments are designed to minimize impacts to surface water quality. For more information, please refer to the <a href="https://charlottenc.gov/stormwater/regulations/Pages/default.aspx" rel="noreferrer" target="_blank">PSCO regulations</a> or call <a href="tel:+7043367600">704.336.7600</a>.',
+            detail: 'Post-Construction Stormwater Control ordinances ensure that new developments are designed to minimize impacts to surface water quality. For more information, please refer to the <a href="https://charlottenc.gov/stormwater/regulations/Pages/default.aspx" rel="nofollow noopener noreferrer external" target="_blank">PSCO regulations</a> or call <a href="tel:+7043367600" rel="nofollow noopener noreferrer external">704.336.7600</a>.',
             headline: 'DISTRESSED BUSINESS DISTRICT'
           }
         } else {
@@ -184,7 +184,7 @@
           brownfieldReport = {
             top: 'This property contains a',
             sub: 'Special Restrictions May Apply',
-            detail: `See NC DEQ <a href="${data[0].rec_docs_link.replace('.aspx:dbid', '.aspx?dbid')}" rel="noopener" target="_blank">recorded documents for ${data[0].bf_name} brownfield</a> for details. For more information, please contact the North Carolina Department of Environmental Quality at <a href="tel:+8776236748">877.623.6748</a>.`,
+            detail: `See NC DEQ <a href="${data[0].rec_docs_link.replace('.aspx:dbid', '.aspx?dbid')}" rel="nofollow noopener noreferrer external" target="_blank">recorded documents for ${data[0].bf_name} brownfield</a> for details. For more information, please contact the North Carolina Department of Environmental Quality at <a href="tel:+8776236748" rel="nofollow noopener noreferrer external">877.623.6748</a>.`,
             headline: 'BROWNFIELD'
           }
         } else {
@@ -223,7 +223,7 @@
             detail: `Conservation easements help protect stream and wetland restoration projects that focus on
               improving water quality and ecosystems and decrease potential flooding. For more information about
               the conservation easement on your property and where it is located, please contact Jacey Meador at
-              <a href="email:Jacey.Meador@charlottenc.gov">Jacey.Meador@charlottenc.gov</a>.`,
+              <a href="email:Jacey.Meador@charlottenc.gov" rel="nofollow noopener noreferrer external">Jacey.Meador@charlottenc.gov</a>.`,
             headline: 'CONSERVATION EASEMENT'
           }
         } else {
@@ -257,7 +257,7 @@
           waterQualityReport = {
             top: 'This property is in a',
             sub: 'Special Restrictions May Apply',
-            detail: `The buffer(s) are: <strong>${data.map(el => el.label + ' ' + el.type).join(', ')}</strong>. Water Quality requlations are focused on the goal of improving the quality and usability of surface waters such as streams and lakes. For more information, please call <a href="tel:+7043367600">704.336.7600</a>.`,
+            detail: `The buffer(s) are: <strong>${data.map(el => el.label + ' ' + el.type).join(', ')}</strong>. Water Quality requlations are focused on the goal of improving the quality and usability of surface waters such as streams and lakes. For more information, please call <a href="tel:+7043367600" rel="nofollow noopener noreferrer external">704.336.7600</a>.`,
             headline: 'WATER QUALITY BUFFER'
           }
         } else {
@@ -291,7 +291,7 @@
           floodplainReport = {
             top: 'This property is in a',
             sub: 'Special Restrictions May Apply',
-            detail: 'For more information, please call <a href="tel:+7043367600">704.336.7600</a>.',
+            detail: 'For more information, please call <a href="tel:+7043367600" rel="nofollow noopener noreferrer external">704.336.7600</a>.',
             headline: 'REGULATED FLOODPLAIN'
           }
         } else {
