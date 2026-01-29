@@ -147,11 +147,11 @@
   <table class="table-component table-auto w-full">
   <thead>
     <tr>
-      <th></th>
+      <th aria-label="Show on map"></th>
       <th class="text-left">METRIC</th>
       <th class="text-center">NEIGHBORHOOD</th>
       <th class="text-center">
-        <select bind:value={selected} class="bg-white uppercase outline-0 border-b-2 border-slate-800 dark:border-white dark:bg-slate-800 text-center">
+        <select bind:value={selected} aria-label="Select a metric group" class="bg-white uppercase outline-0 border-b-2 border-slate-800 dark:border-white dark:bg-slate-800 text-center">
           {#each Object.keys(metricGroup) as category}
           <optgroup label={category}>
             {#each Object.keys(metricGroup[category]) as group}
@@ -181,7 +181,7 @@
             </svg>
           </td>
           <td data-label="METRIC">
-            <a href="https://maps.mecklenburgcountync.gov/qol/data/meta/{metric}.html" rel="noreferrer" target="_blank">{metricConfig.filter(el => el.metric === metric)[0].title}</a>,
+            <a href="https://maps.mecklenburgcountync.gov/qol/data/meta/{metric}.html" rel="nofollow noopener noreferrer external" target="_blank">{metricConfig.filter(el => el.metric === metric)[0].title}</a>,
             {data.years[data.years.length - 1]}
             {#if metricConfig.filter(el => el.metric === metric)[0].label}
             <span class="block text-sm">{@html metricConfig.filter(el => el.metric === metric)[0].label}</span>
