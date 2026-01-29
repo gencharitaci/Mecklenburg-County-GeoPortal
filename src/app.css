@@ -33,3 +33,7 @@ body {
     transform: translateY(0%);
   }
 }
+
+.record-headline {
+  @apply text-orange-600 dark:text-amber-200;
+}
