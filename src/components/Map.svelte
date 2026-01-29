@@ -103,7 +103,7 @@
       const popup = new gl.Popup({ offset: 35 }).setHTML(
         `<h3 class="font-bold text-sky-800 text-base pb-1">${pt.name}</h3>
         ${pt.address}
-        <br><a target="_blank" href="${directions($location.lnglat, pt.lngLat)}">Directions</a>`
+        <br><a target="_blank" href="${directions($location.lnglat, pt.lngLat)}" rel="nofollow noopener noreferrer external">Directions</a>`
       )
       new gl.Marker(el)
         .setLngLat(pt.lngLat)
