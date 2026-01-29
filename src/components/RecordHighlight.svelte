@@ -17,11 +17,16 @@
   {/if}
 
   {#if headline}
-  <h3 class="text-2xl md:text-4xl font-bold text-orange-600">{headline}</h3>
+  <h3 class="text-2xl md:text-4xl font-bold record-headline">{headline}</h3>
   {/if}
 
   {#if sub}
-  <p class="text-lg md:text-xl pb-1">{@html sub}</p>
+    {@const url = sub.match(/href="([^"]*)"/)?.[1] || (sub.startsWith("http") ? sub : null)}
+    {#if url && url !== ''}
+      <a href={url} target="_blank" rel="noopener noreferrer external">{url}</a>
+    {:else}
+      <p class="text-lg md:text-xl pb-1">{@html sub}</p>
+    {/if}
   {/if}
 
   {#if detail}
