@@ -18,7 +18,7 @@
     caption: "Tax Appraisal",
     columns: ["Year", "Building", "Land", "Extra", "Total"],
     alignRight: [2,3,4,5],
-    footer: `<a href="http://taxbill.co.mecklenburg.nc.us/publicwebaccess/BillSearchResults.aspx?ParcelNum=${$location.pid}" target="_blank">View Tax Bills</a>`,
+    footer: `<a href="http://taxbill.co.mecklenburg.nc.us/publicwebaccess/BillSearchResults.aspx?ParcelNum=${$location.pid}" target="_blank" rel="nofollow noopener noreferrer external">View Tax Bills</a>`,
     rows: []
   }
   const saleTable = {
@@ -157,7 +157,7 @@
         data.forEach(el => {
           saleTable.rows.push([
             formatDate(el.dte_dateofsale),
-            `<a href="https://meckrod.manatron.com/RealEstate/SearchDetail.aspx?bk=${el.txt_deedbook}&pg=${el.txt_deedpage}&type=BkPg" title="Mecklenburg County Register of Deeds" target="_blank">${el.txt_deedbook}-${el.txt_deedpage}</a>`,
+            `<a href="https://meckrod.manatron.com/RealEstate/SearchDetail.aspx?bk=${el.txt_deedbook}&pg=${el.txt_deedpage}&type=BkPg" title="Mecklenburg County Register of Deeds" target="_blank" rel="nofollow noopener noreferrer external">${el.txt_deedbook}-${el.txt_deedpage}</a>`,
             formatMoney(el.amt_price),
           ])
         })
