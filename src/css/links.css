@@ -1,5 +1,5 @@
 main a {
-  @apply underline text-sky-700 dark:text-sky-400 transition-colors duration-200 ease-in-out;
+  @apply underline text-sky-700 dark:text-sky-300 transition-colors duration-200 ease-in-out;
 }
 main a:hover {
   @apply text-sky-800 dark:text-sky-300;
