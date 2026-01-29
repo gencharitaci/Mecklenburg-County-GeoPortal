@@ -12,9 +12,9 @@ import { activeTabs, tabs, scroll, location } from '../store.js'
 
 function setButtonStyle(tab, activeTabs) {
   if (activeTabs.filter(elem => elem === tab).length === 0) {
-    return 'bg-gray-300 hover:bg-gray-400 text-gray-900 hover:text-white hover:shadow-gray-800/50'
+    return 'bg-gray-300 hover:bg-gray-600 text-gray-900 hover:text-white hover:shadow-gray-800/50'
   }
-  return 'shadow-md bg-sky-700 shadow-slate-600/50 hover:bg-sky-800 hover:shadow-sky-800/50 text-white'
+  return 'shadow-md bg-sky-800 shadow-slate-600/50 hover:bg-sky-800 hover:shadow-sky-800/50 text-white'
 }
 
 
@@ -36,7 +36,7 @@ const setTab = (tab) => () => {
 
 </script>
 
-<h2 class="print:hidden text-center mt-12 font-bold text-xl md:text-2xl text-orange-600">{$location.address}</h2>
+<h2 class="print:hidden text-center mt-12 font-bold text-xl md:text-2xl text-orange-600 dark:text-amber-200">{$location.address}</h2>
 <div class="md:flex mt-2 flex-wrap justify-center items-center text-center md:mx-24 print:hidden">
   {#each $tabs as tab}
   <button class="btn m-1 transition duration-200 ease-in-out hover:shadow-lg {setButtonStyle(tab.id, $activeTabs)}"
