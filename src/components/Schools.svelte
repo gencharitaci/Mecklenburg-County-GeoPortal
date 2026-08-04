@@ -206,7 +206,7 @@
 <Table
   rows={schoolsCurrent.rows}
   columns={schoolsCurrent.columns}
-  caption="2025-2026 School Year"
+  caption="2026-2027 School Year"
   alignRight={[4]}
   alignCenter={[5,6,7]}
   footer="*2023-24 school year, North Carolina Department of Public Instruction"
@@ -215,7 +215,7 @@
 <Table
   rows={schoolsFuture.rows}
   columns={schoolsFuture.columns}
-  caption="2026-2027 School Year"
+  caption="2027-2028 School Year"
   alignRight={[4]}
   alignCenter={[5,6,7]}
   footer="*2023-24 school year, North Carolina Department of Public Instruction"
@@ -224,7 +224,7 @@
 <Table
   rows={magnetTable.rows}
   columns={magnetTable.columns}
-  caption={'Magnet Schools (You Are in <a href="https://cmschoice.org/your-choices/schools/" target="_blank" rel="nofollow noopener noreferrer external">Zone ' + zone + '</a>)'}
+  caption={'Magnet Schools (You Are in <a href="https://www.cmsk12.org/academics/school-choice/" target="_blank" rel="nofollow noopener noreferrer external">Zone ' + zone + '</a>)'}
   alignRight={[5]}
 />
 
