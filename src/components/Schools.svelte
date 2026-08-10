@@ -92,7 +92,7 @@
       // console.log("schlnums", schlnums);
       
 
-      fetch(`https://maps.mecklenburgcountync.gov/dirt/api/v1/query/view_cms_schools_metrics?columns=city,glp_2023_24,grade_2023_24,growth_status_2023_24,num as schlnum,address,name,type,ST_Distance(geom,ST_Transform(GeomFromText('POINT( ${lng} ${lat} )',4326), 2264)) as distance,st_x(st_transform(geom, 4326)) as lng, st_y(st_transform(geom, 4326)) as lat&filter=num in(${schlnums.join()})`)
+      fetch(`https://maps.mecklenburgcountync.gov/dirt/api/v1/query/view_cms_schools_metrics?columns=city,glp_2024_25,grade_2024_25,growth_status_2024_25,num as schlnum,address,name,type,ST_Distance(geom,ST_Transform(GeomFromText('POINT( ${lng} ${lat} )',4326), 2264)) as distance,st_x(st_transform(geom, 4326)) as lng, st_y(st_transform(geom, 4326)) as lat&filter=num in(${schlnums.join()})`)
         .then(schools => schools.json())
         .then(schools => {
 
@@ -129,9 +129,9 @@
                 result.grades.join(', '),
                 result.address,
                 `${formatCommas(result.distance / 5280, 1)} miles`,
-                result.grade_2023_24 || '',
-                result.growth_status_2023_24 || '',
-                result.glp_2023_24 ? result.glp_2023_24 + '%' : ''
+                result.grade_2024_25 || '',
+                result.growth_status_2024_25 || '',
+                result.glp_2024_25 ? result.glp_2024_25 + '%' : ''
               ])
               } else {
                 console.warn(`No data found for school number ${scl}`);
@@ -145,9 +145,9 @@
               //   result.grades.join(', '),
               //   result.address,
               //   `${formatCommas(result.distance / 5280, 1)} miles`,
-              //   result.grade_2023_24 || '',
-              //   result.growth_status_2023_24 || '',
-              //   result.glp_2023_24 ? result.glp_2023_24 + '%' : ''
+              //   result.grade_2024_25 || '',
+              //   result.growth_status_2024_25 || '',
+              //   result.glp_2024_25 ? result.glp_2024_25 + '%' : ''
               // ])
             })
 
@@ -167,7 +167,7 @@
     const params = {
       filter: "magnet <> 'Non Magnet'",
       columns: `num,city,address,name,grade_level,coalesce(mag_focus, '') as mag_focus,st_x(st_transform(geom, 4326)) as lng,
-          st_y(st_transform(geom, 4326)) as lat,magnet,glp_2023_24,grade_2023_24,growth_status_2023_24,
+          st_y(st_transform(geom, 4326)) as lat,magnet,glp_2024_25,grade_2024_25,growth_status_2024_25,
           ST_Distance(geom,ST_Transform(
           GeomFromText('POINT( ${lng} ${lat} )',4326), 2264)) as distance`,
       sort: 'distance'
@@ -209,7 +209,7 @@
   caption="2026-2027 School Year"
   alignRight={[4]}
   alignCenter={[5,6,7]}
-  footer="*2023-24 school year, North Carolina Department of Public Instruction"
+  footer="*2024-25 school year, North Carolina Department of Public Instruction"
 />
 
 <Table
@@ -218,7 +218,7 @@
   caption="2027-2028 School Year"
   alignRight={[4]}
   alignCenter={[5,6,7]}
-  footer="*2023-24 school year, North Carolina Department of Public Instruction"
+  footer="*2024-25 school year, North Carolina Department of Public Instruction"
 />
 
 <Table
