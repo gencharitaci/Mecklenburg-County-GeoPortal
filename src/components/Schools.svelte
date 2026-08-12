@@ -41,7 +41,7 @@
     },
     {
       name: 'School data on Open Mapping',
-      url: 'https://maps.mecklenburgcountync.gov/openmapping/data.html?search=school'
+      url: 'https://maps.mecklenburgcountync.gov/openmapping/data.html#school'
     },
     {
       name: 'NC test scores: 23-24 grades for Charlotte-Mecklenburg Schools | Charlotte Observer',
