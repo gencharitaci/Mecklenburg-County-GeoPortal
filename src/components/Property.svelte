@@ -64,7 +64,7 @@
     },
     {
       name: 'Office of the Tax Collector',
-      url: 'https://www.mecknc.gov/taxcollections/Pages/Home.aspx'
+      url: 'https://tax.mecknc.gov/'
     },
     {
       name: 'Charlotte Planning, Design and Development',
