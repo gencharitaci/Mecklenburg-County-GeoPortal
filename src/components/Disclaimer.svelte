@@ -26,13 +26,15 @@
   }
 
   function handleCloseClick() {
-    // localStorage.setItem("disclaimerAccepted", "true");
-
     // Update local storage based on whether the checkbox was checked
     localStorage.setItem(
       "disclaimerAcceptedGP",
       doNotShowAgain ? "true" : "false"
     );
+    
+    // Update the isAccepted variable to reflect the current state
+    isAccepted = doNotShowAgain;
+    
     hideDisclaimer();
   }
 
@@ -98,6 +100,7 @@
           type="checkbox"
           id="doNotShowAgain"
           class="accent-zinc-500"
+          bind:checked={doNotShowAgain}
         />
         <label for="doNotShowAgain">Don't show again</label>
       </div>
