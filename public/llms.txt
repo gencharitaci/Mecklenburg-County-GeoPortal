@@ -1,0 +1,164 @@
+# Mecklenburg County GeoPortal
+
+The official interactive mapping platform for Mecklenburg County, North Carolina. Provides property information, environmental data, school assignments, voting districts, parks, libraries, trash/recycling schedules, and community quality-of-life metrics through a modern web GIS application.
+
+**Primary Use Cases:** Property due diligence, flood risk assessment, school zone verification, voter information, neighborhood research, stormwater fee estimation, permit history review.
+
+## Overview
+
+Mecklenburg County GeoPortal is a single-page application built with Svelte and MapLibre GL that delivers authoritative geospatial data to residents, businesses, and government agencies. Users can search by address or click on the map to retrieve comprehensive location-based reports across 9 thematic areas.
+
+**Key Features:**
+- Interactive map with satellite/street basemaps
+- Address/parcel search with autocomplete
+- Deep linking via URL hash for sharing specific locations
+- Print-optimized reports
+- Progressive Web App (PWA) support with offline capability
+- Dark mode support
+- Responsive design for mobile and desktop
+
+**How to Use:** Enter an address, parcel ID, or click any location on the map. The app returns 9 tabbed reports: Property, Schools, Environment, Impervious Surface, Community (Quality of Life), Voting, Parks, Libraries, and Trash/Recycling.
+
+## Data Categories (9 Report Tabs)
+
+### 1. Property Information
+**Source:** Mecklenburg County GIS (DIRT API), Tax Assessor, Register of Deeds
+- Ownership details (owner name, mailing address)
+- Tax appraisal history (building, land, total values by year)
+- Sale history (date, deed reference, price)
+- Land use classification and tax neighborhood
+- Building characteristics (type, year built, exterior, area, bedrooms, bathrooms)
+- Building permits (date, project, square footage, cost)
+- Zoning designation
+- Direct links to POLARIS, Tax Collector, Assessor's Office, Charlotte Planning
+
+### 2. Schools
+**Source:** Charlotte-Mecklenburg Schools (CMS), NC Department of Public Instruction
+- Current and future school assignments (2026-27, 2027-28)
+- School grades served, address, distance from property
+- NC school performance grades (A-F), growth status, grade-level proficiency %
+- Magnet school options with focus areas and transportation zones
+- Transportation zone information (Violet, Blue, Green)
+- Contact info for CMS Planning and Transportation Services
+
+### 3. Environment
+**Source:** Mecklenburg County GIS, Storm Water Services, NC DEQ
+- Regulated floodplain status (FEMA) — **critical for insurance, lending, permitting**
+- Water quality buffers (stream/lake buffers with restrictions)
+- Post-construction stormwater control districts (Transit/Business Corridors)
+- Brownfield sites (NC DEQ program with recorded document links)
+- Watershed identification (name, type, subarea)
+- Conservation easements (restrictions and contact info)
+- Soil types (name, description, hydrologic group) — **septic suitability, drainage**
+
+### 4. Impervious Surface
+**Source:** Mecklenburg County GIS (updated impervious surface layer)
+- Breakdown by category and surface type (buildings, driveways, parking, etc.)
+- Area in square feet for each surface type
+- Total impervious surface area for the parcel
+- Stormwater fee calculation context
+
+### 5. Community (Quality of Life)
+**Source:** Quality of Life Explorer, Mecklenburg County GIS
+27 neighborhood-level metrics across categories (with 2010–present trend sparklines):
+- **Demographics:** Population, density, diversity index, age distribution
+- **Housing:** Homeownership, median value, rent burden, housing age
+- **Economy:** Income, poverty, unemployment, SNAP participation
+- **Education:** Educational attainment, school proficiency, chronic absence
+- **Health:** Insurance coverage, food access, physical activity, life expectancy
+- **Safety:** Crime rates, 911 calls, traffic crashes
+- **Environment:** Tree canopy, park access, impervious surface, flood risk
+- **Transportation:** Commute modes, transit access, walk score
+- **Civic:** Voter turnout, volunteerism, library visits
+
+Comparison views: Neighborhood vs. Charlotte vs. Mecklenburg County. **Ideal for real estate analysis, grant writing, equity assessments, community planning.**
+
+### 6. Voting & Districts
+**Source:** Mecklenburg County Board of Elections, GIS
+- Polling location (name, address, precinct, distance) — **find where to vote**
+- Elected officials by district:
+  - **Federal:** President, Vice President, US Senators, US House Representative
+  - **State:** Governor, NC State Senator, NC House Representative
+  - **County:** County Commissioners (district + at-large), Board of Education (district + at-large)
+  - **Local:** Charlotte City Council (district + at-large) or town officials for Cornelius, Davidson, Huntersville, Matthews, Mint Hill, Pineville
+- Political district boundaries (congressional, state senate, state house, county commission, school board, city council, voting precincts, jurisdictions)
+
+**Use for:** Voter registration verification, civic engagement, redistricting awareness, contacting representatives.
+
+### 7. Parks & Greenways
+**Source:** Mecklenburg County Park and Recreation, Huntersville Parks
+- 10 closest parks (name, address, distance)
+- 3 closest greenways (trail name, surface type, distance)
+- Interactive map with park/greenway locations
+
+### 8. Libraries
+**Source:** Charlotte Mecklenburg Library
+- 5 closest library branches (name, address, distance)
+- Interactive map with library locations
+
+### 9. Trash & Recycling Collection
+**Source:** Municipal solid waste departments
+- Collection schedules by jurisdiction (Charlotte, Cornelius, Huntersville, Matthews, Pineville, unincorporated Mecklenburg)
+- Service types: Garbage, Recycling, Yard Waste, Bulky Item
+- Recycling week calculation (A/B or Green/Gold week rotation) — **know which week is yours**
+- Jurisdiction-specific resource links
+
+**Answers:** "When is my trash pickup?" "Is this a recycling week?" "Who do I call for bulky item pickup?"
+
+## Data Sources & Authority (Official Government Data)
+
+All data originates from official Mecklenburg County government systems:
+- **GIS Data:** maps.mecklenburgcountync.gov (DIRT API)
+- **Tax Data:** Mecklenburg County Tax Assessor & Collector
+- **Deeds:** Mecklenburg County Register of Deeds
+- **Schools:** Charlotte-Mecklenburg Schools + NC DPI
+- **Elections:** Mecklenburg County Board of Elections
+- **Parks:** Mecklenburg County Park & Recreation
+- **Libraries:** Charlotte Mecklenburg Library
+- **Stormwater:** Charlotte Storm Water Services
+- **Environmental:** NC DEQ (Brownfields)
+- **Quality of Life:** Quality of Life Explorer (Mecklenburg County)
+
+**Trust Signals:** Authoritative primary sources, not aggregated third-party data. Direct links to official records (deeds, tax bills, brownfield docs, election records).
+
+## SEO & GEO Keywords (Intent-Organized)
+
+**Property Research:** Mecklenburg County GIS, GeoPortal, property search, parcel lookup, tax appraisal, deed history, building permits, zoning lookup, POLARIS alternative
+**Risk Assessment:** floodplain map, flood zone lookup, FEMA flood map, water quality buffer, brownfield site, conservation easement, watershed map, soil type lookup
+**Schools & Education:** school zone finder, CMS school assignment, magnet schools Charlotte, NC school report cards, school transportation zone
+**Civic & Voting:** voting precinct Mecklenburg, polling location finder, elected officials NC, who represents me, district maps
+**Neighborhood Analysis:** quality of life explorer, neighborhood statistics Charlotte, community demographics, walk score, crime stats, park access
+**Utilities & Services:** trash pickup schedule Charlotte, recycling week calculator, library locations, parks near me, impervious surface stormwater fee
+**Geographic:** Charlotte NC maps, Mecklenburg County North Carolina GIS, open mapping data, parcel viewer
+
+## Access & Usage
+
+**Public URL:** https://maps.mecklenburgcountync.gov/geoportal
+**No authentication required** for public data access.
+**Rate limits:** Subject to DIRT API fair use policies.
+**Data freshness:** Varies by layer (real-time for elections, annually for tax/QoL, periodic for environmental).
+**Mobile-friendly:** Responsive design works on phones, tablets, desktop.
+**Print/PDF:** Reports formatted for printing and saving as PDF.
+**Shareable links:** URL hash encodes location + active tabs for exact report sharing.
+**Offline-capable:** PWA caches assets for offline map viewing.
+
+## Related Resources & Alternatives
+
+- **GitHub Repository (source code):** https://github.com/gencharitaci/Mecklenburg-County-GeoPortal
+- **Mecklenburg County Open Mapping Portal** (raw data downloads): https://maps.mecklenburgcountync.gov/openmapping/
+- **Quality of Life Explorer** (dashboard for QoL metrics): https://maps.mecklenburgcountync.gov/qol/
+- **POLARIS 3G** (legacy property system): https://polaris3g.mecklenburgcountync.gov/
+- **Charlotte Open Data Portal**: https://data.charlottenc.gov/
+- **NC OneMap** (statewide GIS): https://data.nconemap.gov/
+- **Mecklenburg County Tax Bills**: http://taxbill.co.mecklenburg.nc.us/
+- **Register of Deeds**: https://meckrod.manatron.com/
+- **Charlotte Storm Water Services**: https://charlottenc.gov/stormwater/
+- **CMS School Choice**: https://www.cmsk12.org/academics/school-choice/
+- **Board of Elections**: https://vote.mecknc.gov/
+
+## Attribution & License
+
+Data provided by Mecklenburg County GIS, Charlotte-Mecklenburg Schools, Mecklenburg County Board of Elections, Charlotte Storm Water Services, NC Department of Environmental Quality, and other official sources. Application developed by Mecklenburg County GIS Department.
+
+**Data License:** Public records under NC General Statutes §132. GIS data provided "as-is" without warranty. See individual agency sites for terms.
+**Code License:** MIT (see GitHub repository).
