@@ -206,7 +206,7 @@
 <Table
   rows={schoolsCurrent.rows}
   columns={schoolsCurrent.columns}
-  caption="2026-2027 School Year"
+  caption={'2026-2027 School Year (You Are in <a href="https://www.cmsk12.org/academics/school-choice/" target="_blank" rel="nofollow noopener noreferrer external">Zone ' + zone + '</a>)'}
   alignRight={[4]}
   alignCenter={[5,6,7]}
   footer="*2024-25 school year, North Carolina Department of Public Instruction"
@@ -215,18 +215,22 @@
 <Table
   rows={schoolsFuture.rows}
   columns={schoolsFuture.columns}
-  caption="2027-2028 School Year"
+  caption={'2027-2028 School Year (You Are in <a href="https://www.cmsk12.org/academics/school-choice/" target="_blank" rel="nofollow noopener noreferrer external">Zone ' + zone + '</a>)'}
   alignRight={[4]}
   alignCenter={[5,6,7]}
   footer="*2024-25 school year, North Carolina Department of Public Instruction"
 />
 
+
 <Table
   rows={magnetTable.rows}
   columns={magnetTable.columns}
-  caption={'Magnet Schools (You Are in <a href="https://www.cmsk12.org/academics/school-choice/" target="_blank" rel="nofollow noopener noreferrer external">Zone ' + zone + '</a>)'}
+  caption={'Magnet Schools'}
   alignRight={[5]}
+  footer="*Magnet schools are subject to change during school year"
 />
+
+
 
 <p class="pt-8 pb-2">
   Transportation eligibility is determined by the transportation zone in which you live.
